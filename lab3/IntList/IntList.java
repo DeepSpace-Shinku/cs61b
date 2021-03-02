@@ -109,25 +109,26 @@ public class IntList {
         return result;
     }
 
-    public IntList reverse() {
-        if(this == null){
+    public static IntList reverse(IntList L) {
+        if(L == null){
             return null;
         }
         IntList result = null;
-        IntList ptr = this;
+        IntList ptr = L;
         while(ptr != null){
             result = new IntList(ptr.first, result);
             ptr = ptr.rest;
         }
 
-        ptr = this;
+
+        ptr = L;
         while(ptr != null)
         {
             ptr.first = result.first;
             ptr = ptr.rest;
             result = result.rest;
         }
-        return this;
+        return L;
     }
 
 

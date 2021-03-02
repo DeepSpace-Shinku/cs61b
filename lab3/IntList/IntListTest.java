@@ -31,9 +31,9 @@ public class IntListTest {
     public void testReverse(){
         IntList L = IntList.of(1, 2, 3);
 
-        assertEquals(IntList.of(3, 2, 1),L.reverse());
+        assertEquals(IntList.of(3, 2, 1), IntList.reverse(L));
         assertNotEquals(IntList.of(1, 2, 3), L);
-        // assertEquals(IntList.of().reverse(), null);
+        assertEquals(IntList.reverse(null), null);
     }
 
     /**
