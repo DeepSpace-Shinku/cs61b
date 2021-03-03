@@ -122,12 +122,14 @@ public class IntList {
 
 
         ptr = L;
-        while(ptr != null)
-        {
-            ptr.first = result.first;
-            ptr = ptr.rest;
-            result = result.rest;
-        }
+        //while(ptr != null)
+        //{
+        //    ptr.first = result.first;
+        //    ptr = ptr.rest;
+        //    result = result.rest;
+        //}
+        L.first = result.first;
+        L.rest = result.rest;
         return L;
     }
 
