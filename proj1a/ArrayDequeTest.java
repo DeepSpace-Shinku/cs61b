@@ -25,4 +25,21 @@ public class ArrayDequeTest {
 
 
     }
+
+    @Test
+    public void FailedTest1()
+    {
+        ArrayDeque<Integer> a = new ArrayDeque<Integer>();
+        a.addFirst(0);
+        a.addFirst(1);
+        a.addFirst(2);
+        a.addFirst(3);
+        a.addFirst(4);
+        a.addFirst(5);
+        a.addFirst(6);
+        assertEquals(true, 0 ==  a.removeLast());
+        assertEquals(true, 1 ==  a.removeLast());
+        a.addFirst(9);
+        a.addFirst(10);
+    }
 }

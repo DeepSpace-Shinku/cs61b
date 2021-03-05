@@ -67,13 +67,10 @@ public class LinkedListDeque<T>
         if(this.isEmpty()) {
             return null;
         }
-        Node temp = sentinel.next;
+        T item = sentinel.next.item;
         sentinel.next = sentinel.next.next;
         sentinel.next.prev = sentinel;
         size -= 1;
-
-        T item = temp.item;
-        temp = null;
         return item;
     }
 
@@ -82,13 +79,10 @@ public class LinkedListDeque<T>
         if(this.isEmpty()) {
             return null;
         }
-        Node temp = sentinel.prev;
-        sentinel.prev = sentinel.next.next;
+        T item = sentinel.prev.item;
+        sentinel.prev = sentinel.prev.prev;
         sentinel.prev.next = sentinel;
         size -= 1;
-
-        T item = temp.item;
-        temp = null;
         return item;
     }
 

@@ -1,42 +1,55 @@
+import java.beans.BeanProperty;
+
 public class ArrayDeque<T> {
 
     private T[] items;
-    private int left_size; // The amount of items that are stored in the left of zero index.
-    private int right_size; // The amount of items that are stored in zero index or the right of it.
+    private int size;
+    private int firstIndex; //The index of the first item in ArrayDeque
 
     public ArrayDeque()
     {
         items = (T []) new Object[8];
-        left_size = 0;
-        right_size = 0;
+        size = 0;
+        firstIndex = 0;
+    }
+
+    private int firstIndex()
+    {
+        return firstIndex;
+    }
+
+    private int lastIndex()
+    {
+        if(firstIndex + size > items.length){
+            return firstIndex + size - items.length - 1;
+        }
+        return firstIndex + size - 1;
     }
 
     // Double the size of items.
-    private void doubleSize()
+    public void doubleSize()
     {
         T[] new_items = (T []) new Object[2 * items.length];
-        int i = 0;
-        for(; i < Math.min(left_size, size()); i += 1) {
-            System.arraycopy(items, firstIndex() + i, new_items, i, 1);
+        int ptr = firstIndex();
+        for(int i = 0; i < size(); i += 1) {
+            System.arraycopy(items, ptr, new_items, i, 1);
+            ptr = indexAfter(ptr);
         }
-        for(int j = Math.min(right_size, size()); j > 0; j -= 1, i += 1) {
-            System.arraycopy(items, lastIndex() - j + 1, new_items, i, 1);
-        }
-        left_size = 0;
-        right_size = i;
+        firstIndex = 0;
         items = new_items;
     }
 
     private boolean shouldHalve()
     {
-        if(size() * 4 <= items.length && items.length >= 16){
+        if(size() * 4 < items.length && items.length >= 16){
             return true;
         }
         return false;
     }
 
-    private void halveSize()
+    public void halveSize()
     {
+        /*
         T[] new_items = (T []) new Object[ items.length / 2];
         int i = 0;
         for(; i < Math.min(left_size, size()); i += 1) {
@@ -47,15 +60,55 @@ public class ArrayDeque<T> {
         }
         left_size = 0;
         right_size = i;
+        items = new_items;*/
+        T[] new_items = (T []) new Object[items.length / 2];
+        int ptr = firstIndex();
+        for(int i = 0; i < size(); i += 1) {
+            System.arraycopy(items, ptr, new_items, i, 1);
+            ptr = indexAfter(ptr);
+        }
+        firstIndex = 0;
         items = new_items;
+    }
+
+    // Return the index before the given index
+    private int indexBefore(int index)
+    {
+        // assert index > 0;
+        if(index == 0){
+            return items.length - 1;
+        }
+        return index -= 1;
+    }
+
+    // Return the index after the given index
+    private int indexAfter(int index)
+    {
+        // assert index > 0;
+        if(index == items.length - 1){
+            return 0;
+        }
+        return index + 1;
+    }
+    // Add item as the first element of the ArrayDeque
+    public void addFirstElement(T item){
+        assert isEmpty();
+        firstIndex = 0;
+        items[0] = item;
+        size = 1;
     }
 
     public void addFirst(T item)
     {
+        if(isEmpty()){
+            addFirstElement(item);
+            return;
+        }
         if(size() == items.length){
             doubleSize();
         }
-        left_size += 1;
+        firstIndex = indexBefore(firstIndex());
+        size += 1;
         items[firstIndex()] = item;
     }
 
@@ -64,78 +117,62 @@ public class ArrayDeque<T> {
         if(size() == items.length){
             doubleSize();
         }
-        right_size += 1;
-        items[lastIndex()] = item;
+        if(isEmpty()){
+            addFirstElement(item);
+            return;
+        }
+        items[indexAfter(lastIndex())] = item;
+        size += 1;
     }
 
     public boolean isEmpty()
     {
-        return left_size + right_size == 0;
+        return size == 0;
     }
 
     public int size()
     {
-        return left_size + right_size;
+        return size;
     }
 
     // return the index of the first element in the array
-    private int firstIndex()
-    {
-        if(left_size > 0){
-            return items.length - left_size;
-        }
-        else{
-            return -left_size;
-        }
-    }
-
-    // return the index of the first element in the array
-    private int lastIndex()
-    {
-        if(right_size > 0){
-            return right_size - 1;
-        }
-        else{
-            return items.length + right_size - 1;
-        }
-    }
 
     public void printDeque()
     {
-       for(int i = 0; i < Math.min(left_size, size()); i += 1) {
-            System.out.print(items[firstIndex() + i] + " ");
+        int ptr = firstIndex();
+        for(int i = 0; i < size(); i += 1) {
+            System.out.print(items[ptr] + " ");
+            ptr = indexAfter(ptr);
         }
-        for(int i = 0; i < Math.min(right_size, size()); i += 1) {
-            System.out.print(items[lastIndex() - Math.min(right_size, size()) + i + 1] + " ");
-        }
-
     }
 
     public T removeFirst()
     {
-        if(size() == 0){
+        if(isEmpty()){
             return null;
-        }
-        if(shouldHalve()){
-            halveSize();
         }
         T first = items[firstIndex()];
         items[firstIndex()] = null;
-        left_size -= 1;
+        firstIndex = indexAfter(firstIndex());
+        size -= 1;
+        if(shouldHalve()){
+            halveSize();
+        }
         return first;
+
     }
 
     public T removeLast()
     {
-        if(size() == 0){
+        if(isEmpty()){
             return null;
-        }
-        if(shouldHalve()){
-            halveSize();
         }
         T last = items[lastIndex()];
         items[lastIndex()] = null;
-        right_size -= 1;
+        size -= 1;
+        if(shouldHalve()){
+            halveSize();
+        }
         return last;
     }
 
@@ -143,6 +180,9 @@ public class ArrayDeque<T> {
     {
         if(index > size() - 1 || index < 0){
             return null;
+        }
+        if(firstIndex() + index >= size) {
+            return items[firstIndex() + index - items.length];
         }
         return items[firstIndex() + index];
     }
