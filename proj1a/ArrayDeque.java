@@ -1,5 +1,3 @@
-import java.beans.BeanProperty;
-
 public class ArrayDeque<T> {
 
     private T[] items;
@@ -20,14 +18,14 @@ public class ArrayDeque<T> {
 
     private int lastIndex()
     {
-        if(firstIndex + size > items.length){
+        if (firstIndex + size > items.length){
             return firstIndex + size - items.length - 1;
         }
         return firstIndex + size - 1;
     }
 
     // Double the size of items.
-    public void doubleSize()
+    private void doubleSize()
     {
         T[] new_items = (T []) new Object[2 * items.length];
         int ptr = firstIndex();
@@ -47,7 +45,7 @@ public class ArrayDeque<T> {
         return false;
     }
 
-    public void halveSize()
+    private void halveSize()
     {
         /*
         T[] new_items = (T []) new Object[ items.length / 2];
@@ -91,7 +89,7 @@ public class ArrayDeque<T> {
         return index + 1;
     }
     // Add item as the first element of the ArrayDeque
-    public void addFirstElement(T item){
+    private void addFirstElement(T item){
         assert isEmpty();
         firstIndex = 0;
         items[0] = item;
@@ -181,7 +179,7 @@ public class ArrayDeque<T> {
         if(index > size() - 1 || index < 0){
             return null;
         }
-        if(firstIndex() + index >= size) {
+        if(firstIndex() + index >= items.length) {
             return items[firstIndex() + index - items.length];
         }
         return items[firstIndex() + index];

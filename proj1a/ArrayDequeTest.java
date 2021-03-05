@@ -42,4 +42,28 @@ public class ArrayDequeTest {
         a.addFirst(9);
         a.addFirst(10);
     }
+
+    @Test
+    public void FailedTest2()
+    {
+        ArrayDeque<Integer> b = new ArrayDeque<Integer>();
+        b.addFirst(0);
+        b.addLast(1);
+        assertTrue(b.get(1) == 1);
+        b.addFirst(3);
+        b.addFirst(4);
+        assertTrue(b.removeLast() == 1);
+        assertTrue(b.removeFirst() == 4);
+        assertTrue(b.get(1) == 0);
+        b.addFirst(8);
+        b.addFirst(9);
+        assertTrue(b.removeFirst() == 9);
+        assertTrue(b.removeFirst() == 8);
+        assertTrue(b.removeFirst() == 3);
+        assertTrue(b.get(0) == 0);
+        b.addLast(14);
+        assertTrue(b.get(0) == 0);
+        assertTrue(b.removeFirst() == 0);
+        int a = b.get(0);
+    }
 }
