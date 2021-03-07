@@ -72,7 +72,7 @@ public class ArrayDeque<T> {
     // Return the index before the given index
     private int indexBefore(int index)
     {
-        // assert index > 0;
+        assert index >= 0;
         if(index == 0){
             return items.length - 1;
         }
@@ -82,12 +82,13 @@ public class ArrayDeque<T> {
     // Return the index after the given index
     private int indexAfter(int index)
     {
-        // assert index > 0;
+        assert index >= 0;
         if(index == items.length - 1){
             return 0;
         }
         return index + 1;
     }
+    
     // Add item as the first element of the ArrayDeque
     private void addFirstElement(T item){
         assert isEmpty();
