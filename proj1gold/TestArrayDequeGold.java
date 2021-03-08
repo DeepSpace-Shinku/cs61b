@@ -13,7 +13,7 @@ public class TestArrayDequeGold {
         int testTimes = StdRandom.uniform(100);
 
         String traceback = addTest(stu, sol, testTimes);
-        removeTest(stu, sol, testTimes, traceback);
+        removeTest(stu, sol, testTimes - 1, traceback);
     }
 
     /**
@@ -28,9 +28,9 @@ public class TestArrayDequeGold {
     /**
      * Remove the first item of both StudentArrayDeque and ArrayDequeSolution
      */
-    private static int[] bothRemoveFirst(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol)
+    private static Integer[] bothRemoveFirst(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol)
     {
-        int[] removedItems = new int[2];
+        Integer[] removedItems = new Integer[2];
         removedItems[0] = stu.removeFirst();
         removedItems[1] = sol.removeFirst();
         return removedItems;
@@ -39,7 +39,7 @@ public class TestArrayDequeGold {
     /**
      * Add item as the last item to both StudentArrayDeque and ArrayDequeSolution
      */
-    private static void bothAddLast(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol, int item)
+    private static void bothAddLast(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol, Integer item)
     {
         stu.addLast(item);
         sol.addLast(item);
@@ -49,9 +49,9 @@ public class TestArrayDequeGold {
      * Remove the last item of both StudentArrayDeque and ArrayDequeSolution
      * And return the values of the removed items
      */
-    private static int[] bothRemoveLast(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol)
+    private static Integer[] bothRemoveLast(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol)
     {
-        int[] removedItems = new int[2];
+        Integer[] removedItems = new Integer[2];
         removedItems[0] = stu.removeLast();
         removedItems[1] = sol.removeLast();
         return removedItems;
@@ -79,7 +79,7 @@ public class TestArrayDequeGold {
     {
         String traceback = "";
         for (int i = 0; i < testTimes; i += 1) {
-            int item = StdRandom.uniform(1000);
+            Integer item = StdRandom.uniform(1000);
             String funcName;
             if (isFirst()){
                 bothAddFirst(stu, sol, item);
@@ -88,7 +88,7 @@ public class TestArrayDequeGold {
                 bothAddLast(stu, sol, item);
                 funcName = "AdLast";
             }
-            traceback += stringGenerator(funcName, item);
+            traceback += stringGenerator(funcName, (int) item);
         }
         return traceback;
     }
@@ -100,7 +100,7 @@ public class TestArrayDequeGold {
     private static void removeTest(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol, int testTimes, String traceback)
     {
         for (int i = 0; i < testTimes; i += 1) {
-            int[] removedItems;
+            Integer[] removedItems;
             String funcName;
             if (isFirst()){
                 removedItems = bothRemoveFirst(stu, sol);
