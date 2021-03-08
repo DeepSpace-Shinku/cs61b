@@ -19,7 +19,7 @@ public class TestArrayDequeGold {
     /**
      * Add item as the first item to both StudentArrayDeque and ArrayDequeSolution
      */
-    private static void bothAddFirst(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol, int item)
+    private static void bothAddFirst(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol, Integer item)
     {
         stu.addFirst(item);
         sol.addFirst(item);
@@ -79,7 +79,7 @@ public class TestArrayDequeGold {
     {
         String traceback = "";
         for (int i = 0; i < testTimes; i += 1) {
-            Integer item = StdRandom.uniform(1000);
+            Integer item = (Integer) StdRandom.uniform(1000);
             String funcName;
             if (isFirst()){
                 bothAddFirst(stu, sol, item);
@@ -110,7 +110,7 @@ public class TestArrayDequeGold {
                 funcName = "removeLast";
             }
             traceback += stringGenerator(funcName);
-            assertEquals(traceback,removedItems[0], removedItems[1]);
+            assertEquals(traceback,removedItems[1], removedItems[0]);
         }
     }
 
