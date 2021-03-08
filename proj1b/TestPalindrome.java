@@ -24,7 +24,12 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("nn"));
         assertTrue(palindrome.isPalindrome("n"));
         assertTrue(palindrome.isPalindrome(""));
-
+        CharacterComparator offByOne = new OffByOne();
+        assertFalse(palindrome.isPalindrome("persiflage", offByOne));
+        assertTrue(palindrome.isPalindrome("ibonah", offByOne));
+        assertTrue(palindrome.isPalindrome("on", offByOne));
+        assertTrue(palindrome.isPalindrome("n", offByOne));
+        assertTrue(palindrome.isPalindrome("", offByOne));
     }
 
 }

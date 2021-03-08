@@ -19,14 +19,4 @@ public class TestOffByOne {
         assertFalse(offByOne.equalChars('a', 'a'));
     }
 
-    @Test(timeout = 1000)
-    public void testIsPalindrome()
-    {
-        assertFalse(palindrome.isPalindrome("persiflage", offByOne));
-        assertTrue(palindrome.isPalindrome("ibonah", offByOne));
-        assertTrue(palindrome.isPalindrome("on", offByOne));
-        assertTrue(palindrome.isPalindrome("n", offByOne));
-        assertTrue(palindrome.isPalindrome("", offByOne));
-
-    }
 }
