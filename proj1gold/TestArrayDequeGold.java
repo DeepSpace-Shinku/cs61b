@@ -1,132 +1,120 @@
-/**
- * @source StudentArrayDequeLauncher
- * */
-
-import static org.junit.Assert.*;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
+/**
+ * @ClassName TestArrayDequeGold
+ * @Description TODO
+ * @Author Yixiang Zhao
+ * @Date 2018/7/29 7:16
+ * @Version 1.0
+ */
 public class TestArrayDequeGold {
     @Test
-    public void TestStudentArrayDeque() {
-        StudentArrayDeque<Integer> stu = new StudentArrayDeque<>();
-        ArrayDequeSolution<Integer> sol = new ArrayDequeSolution<>();
-        int testTimes = StdRandom.uniform(100);
-
-        String traceback = addTest(stu, sol, testTimes);
-        removeTest(stu, sol, testTimes - 1, traceback);
-    }
-
-    /**
-     * Add item as the first item to both StudentArrayDeque and ArrayDequeSolution
-     */
-    private static void bothAddFirst(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol, Integer item)
-    {
-        stu.addFirst(item);
-        sol.addFirst(item);
-    }
-
-    /**
-     * Remove the first item of both StudentArrayDeque and ArrayDequeSolution
-     */
-    private static Integer[] bothRemoveFirst(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol)
-    {
-        Integer[] removedItems = new Integer[2];
-        removedItems[0] = stu.removeFirst();
-        removedItems[1] = sol.removeFirst();
-        return removedItems;
-    }
-
-    /**
-     * Add item as the last item to both StudentArrayDeque and ArrayDequeSolution
-     */
-    private static void bothAddLast(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol, Integer item)
-    {
-        stu.addLast(item);
-        sol.addLast(item);
-    }
-
-    /**
-     * Remove the last item of both StudentArrayDeque and ArrayDequeSolution
-     * And return the values of the removed items
-     */
-    private static Integer[] bothRemoveLast(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol)
-    {
-        Integer[] removedItems = new Integer[2];
-        removedItems[0] = stu.removeLast();
-        removedItems[1] = sol.removeLast();
-        return removedItems;
-    }
-
-    /**
-     * Randomly decide to choose whether to choose
-     * the first with equal probability for yes or no.
-     */
-    public static boolean isFirst()
-    {
-        double numberBetweenZeroAndOne = StdRandom.uniform();
-        if (numberBetweenZeroAndOne < 0.5) {
-            return true;
-        } else {
-            return false;
+    public void testArratDeque() {
+        ArrayDequeSolution<Integer> ads = new ArrayDequeSolution<>();
+        StudentArrayDeque<Integer> sad = new StudentArrayDeque<>();
+        // addLast
+        for (int i=0; i<10; i++) {
+            int random = StdRandom.uniform(100);
+            ads.addLast(random);
+            sad.addLast(random);
         }
-    }
-
-    /**
-     * Do the add test to the both Deque for testTimes times and
-     * return a string which describes the trace back information.
-     */
-    private static String addTest(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol, int testTimes)
-    {
-        String traceback = "";
-        for (int i = 0; i < testTimes; i += 1) {
-            Integer item = (Integer) StdRandom.uniform(1000);
-            String funcName;
-            if (isFirst()){
-                bothAddFirst(stu, sol, item);
-                funcName = "AddFirst";
-            }else{
-                bothAddLast(stu, sol, item);
-                funcName = "AdLast";
-            }
-            traceback += stringGenerator(funcName, (int) item);
+        for (int i=0; i<10; i++) {
+            int actual = ads.get(i);
+            int expected = sad.get(i);
+            assertEquals("Oh noooo!\nThis is bad in addLast():\n   Random number " + actual
+                            + " not equal to " + expected + "!",
+                    expected, actual);
         }
-        return traceback;
-    }
 
-    /**
-     * Do the remove test to the both Deque for testTimes times and
-     * add the traceback information to the given traceback string.
-     */
-    private static void removeTest(StudentArrayDeque<Integer> stu, ArrayDequeSolution<Integer> sol, int testTimes, String traceback)
-    {
-        for (int i = 0; i < testTimes; i += 1) {
-            Integer[] removedItems;
-            String funcName;
-            if (isFirst()){
-                removedItems = bothRemoveFirst(stu, sol);
-                funcName = "removeFirst";
-            }else{
-                removedItems = bothRemoveLast(stu, sol);
-                funcName = "removeLast";
-            }
-            traceback += stringGenerator(funcName);
-            assertEquals(traceback,removedItems[1], removedItems[0]);
+        // addFirst
+        for (int i=0; i<10; i++) {
+            int random = StdRandom.uniform(100);
+            ads.addFirst(random);
+            sad.addFirst(random);
         }
+        for (int i=0; i<10; i++) {
+            int actual = ads.get(i);
+            int expected = sad.get(i);
+            assertEquals("Oh noooo!\nThis is bad in addFirst():\n   Random number " + actual
+                            + " not equal to " + expected + "!",
+                    expected, actual);
+        }
+
+        // removeFirst
+        List<Integer> actualList = new ArrayList<>();
+        List<Integer> expectedList = new ArrayList<>();
+        for (int i=0; i<10; i++) {
+            actualList.add(ads.removeFirst());
+            expectedList.add(sad.removeFirst());
+        }
+        for (int i=0; i<10; i++) {
+            int actual = ads.get(i);
+            int expected = sad.get(i);
+            assertEquals("Oh noooo!\nThis is bad in removeFirst():\n   Random number " + actual
+                            + " not equal to " + expected + "!",
+                    expected, actual);
+        }
+        for (int i=0; i<10; i++) {
+            int actual = actualList.get(i);
+            int expected = expectedList.get(i);
+            assertEquals("Oh noooo!\nThis is bad in removeFirst():\n   Random number " + actual
+                            + " not equal to " + expected + "!",
+                    expected, actual);
+        }
+
+
+        // removeLast
+        actualList.clear();
+        expectedList.clear();
+        for (int i=0; i<10; i++) {
+            actualList.add(ads.removeLast());
+            expectedList.add(sad.removeLast());
+        }
+        int actual = ads.size();
+        int expected = sad.size();
+        assertEquals("Oh noooo!\nThis is bad in removeLast():\n   actual size " + actual
+                        + " not equal to " + expected + "!",
+                expected, actual);
+        for (int i=0; i<10; i++) {
+            assertEquals("Oh noooo!\nThis is bad in removeLast():\n   Random number " + actualList.get(i)
+                            + " not equal to " +  expectedList.get(i) + "!",
+                    expectedList.get(i), actualList.get(i));
+        }
+
     }
 
-    /**
-     * Return a string which describes the function call for the given parameter.
-     */
-    private static String stringGenerator(String functionName, int parameter)
-    {
-        return functionName + '(' + String.valueOf(parameter) + ")\n";
+
+    @Test
+    public void testArratDeque2() {
+        ArrayDequeSolution<Integer> ads = new ArrayDequeSolution<>();
+        StudentArrayDeque<Integer> sad = new StudentArrayDeque<>();
+        int random = StdRandom.uniform(100);
+        ads.addFirst(random);
+        sad.addFirst(random);
+        assertEquals("addFirst("+random+")", ads.get(0), sad.get(0));
+        System.out.println("addFirst("+random+")");
+
+        random = StdRandom.uniform(100);
+        ads.addLast(random);
+        sad.addLast(random);
+        assertEquals("addLast("+random+")", ads.get(1), sad.get(1));
+        System.out.println("addLast("+random+")");
+
+        int actual = ads.removeFirst();
+        int expected = ads.removeFirst();
+        assertEquals("removeFirst()", actual, expected);
+        System.out.println("removeFirst()");
+
+        actual = ads.removeLast();
+        expected = sad.removeLast();
+        assertEquals("removeLast()", actual, expected);
+        System.out.println("removeLast()");
     }
 
-    /**
-     * Return a string which describes the function call without parameter.
-     */
-    private static String stringGenerator(String functionName)
-    {
-        return functionName + "()\n";
-    }
+
 }
