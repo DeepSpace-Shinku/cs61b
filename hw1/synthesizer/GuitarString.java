@@ -22,7 +22,7 @@ public class GuitarString {
         buffer = new ArrayRingBuffer<Double>((int) Math.round(SR / frequency));
         while(!buffer.isFull())
         {
-            buffer.enqueue(0.0);
+            buffer.enqueue(0.);
         }
     }
 
