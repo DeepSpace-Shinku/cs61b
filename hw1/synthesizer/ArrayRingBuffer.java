@@ -26,16 +26,15 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         last = 0;
         fillCount = 0;
         this.capacity = capacity;
+
     }
 
-    public int nextIndex(int presentIndex)
+    private int nextIndex(int presentIndex)
     {
-        if(presentIndex < capacity() - 1)
-        {
+        if(presentIndex < capacity() - 1) {
             return presentIndex + 1;
         }
-        else
-        {
+        else {
             return 0;
         }
     }
@@ -90,7 +89,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     }
 
 
-    public class KeyIterator implements Iterator<T>{
+    private class KeyIterator implements Iterator<T>{
         private int ptr;
         public KeyIterator() {
             ptr = first;
@@ -100,7 +99,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         }
         public T next() {
             T returnItem = rb[ptr];
-            ptr = ptr + 1;
+            ptr = nextIndex(ptr);
             return returnItem;
         }
     }
