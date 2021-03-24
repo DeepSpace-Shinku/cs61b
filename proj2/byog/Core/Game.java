@@ -34,7 +34,7 @@ public class Game {
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
 
-        int seed = getSeed(input);
+        long seed = getSeed(input);
         TETile[][] finalWorldFrame = worldGenerator(seed, WIDTH, HEIGHT);
         return finalWorldFrame;
     }

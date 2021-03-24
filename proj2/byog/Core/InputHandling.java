@@ -2,13 +2,13 @@ package byog.Core;
 import static java.lang.Math.*;
 
 public class InputHandling {
-    public static int getSeed(String input)
+    public static long getSeed(String input)
     {
         int endIndex = seedEndIndex(input);
         if (!(input.charAt(0) == 'N' || input.charAt(0) == 'n')){
-            return Integer.parseInt(input);
+            return Long.parseLong(input);
         }
-        return Integer.parseInt(input.substring(1, endIndex));
+        return Long.parseLong(input.substring(1, endIndex));
     }
 
     public static int seedEndIndex(String input)
