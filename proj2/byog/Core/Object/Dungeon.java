@@ -4,16 +4,13 @@ import byog.Core.Index;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 
-import java.io.Serializable;
-
-public class Dungeon extends RectangularObject implements Serializable {
+public class Dungeon extends RectangularObject{
 
     Room roomContained;
     Dungeon[] subDungeons = null;
-    final int MAX_DUNGEON_LENGTH = 18, MIN_DUNGEON_LENGTH = 7, MIN_ROOM_LENGTH = 5;
-    public NumberGenerator random;
+    final int MAX_DUNGEON_LENGTH = 20, MIN_DUNGEON_LENGTH = 7, MIN_ROOM_LENGTH = 5;
+    NumberGenerator random;
     boolean horizontalDivide;
-    Hallway hallway;
 
     public Dungeon(RectangularSize s, TETile[][] w, Index i, NumberGenerator r)
     {
@@ -103,8 +100,8 @@ public class Dungeon extends RectangularObject implements Serializable {
     private RectangularSize setRoomSize()
     {
         RectangularSize roomSize = new RectangularSize();
-        roomSize.setLength(random.next(size.length()/2 + 1, size.length() - 1));
-        roomSize.setWidth(random.next(size.width()/2 + 1, size.width() - 1));
+        roomSize.setLength(random.next(size.length()/2 + 2, size.length() - 1));
+        roomSize.setWidth(random.next(size.width()/2 + 2, size.width() - 1));
         return roomSize;
     }
 
@@ -118,11 +115,21 @@ public class Dungeon extends RectangularObject implements Serializable {
 
     private void addHallways()
     {
+
+        /**
+        if(!isBasicDungeon()){
+            Index middleIndex = new Index(leftIndex() + rightIndex() / 2, bottomIndex() + topIndex() / 2);
+            if (horizontalDivide){
+                Hallway hallway = new Hallway(false, world, hallwayIndex);
+            }
+            else{
+                Hallway hallway = new Hallway(true, world, hallwayIndex);
+            }
+        }*/
         assert !isBasicDungeon(): "Hallways can only be added to non-basic dungeons.";
         Index middleIndex =  hallwayMiddleIndex();
-        hallway = new Hallway(!horizontalDivide, world, middleIndex);
+        Hallway hallway = new Hallway(!horizontalDivide, world, middleIndex);
     }
-
     public Index hallwayMiddleIndex()
     {
         Index middleIndex = new Index();
@@ -149,16 +156,6 @@ public class Dungeon extends RectangularObject implements Serializable {
         }
     }
 
-    public Room getRandomRoom()
-    {
-        if(isBasicDungeon()) {
-            return roomContained;
-        }else{
-            return subDungeons[random.next(2)].getRandomRoom();
-        }
-    }
-
-
     @Override
     public void addTo(TETile[][] world, Index begin_index)
     {
@@ -175,10 +172,5 @@ public class Dungeon extends RectangularObject implements Serializable {
                 world[currentIndex.horizontal()][currentIndex.vertical()] = currentTile;
             }
         }
-    }
-
-    public void showAll()
-    {
-
     }
 }
