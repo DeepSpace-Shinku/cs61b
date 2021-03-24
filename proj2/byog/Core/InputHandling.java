@@ -5,7 +5,9 @@ public class InputHandling {
     public static int getSeed(String input)
     {
         int endIndex = seedEndIndex(input);
-        assert (input.charAt(0) == 'N' || input.charAt(0) == 'n') && endIndex > 1: "Bad input";
+        if (!(input.charAt(0) == 'N' || input.charAt(0) == 'n')){
+            return Integer.parseInt(input);
+        }
         return Integer.parseInt(input.substring(1, endIndex));
     }
 
