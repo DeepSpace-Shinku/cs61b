@@ -109,9 +109,9 @@ public class StringGame {
         int IndexOfl = input.indexOf("l");
         int playSequenceStart;
         if(IndexOfL == -1 || IndexOfl == -1) {
-            playSequenceStart =  max(IndexOfL, IndexOfl);
+            playSequenceStart =  max(IndexOfL, IndexOfl) + 1;
         } else{
-            playSequenceStart =  min(IndexOfL, IndexOfl);
+            playSequenceStart =  min(IndexOfL, IndexOfl) + 1;
         }
         return input.substring(playSequenceStart, input.length()).toCharArray();
     }
