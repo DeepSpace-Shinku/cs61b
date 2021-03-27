@@ -1,6 +1,8 @@
 package byog.Core.Object;
 
-public class RectangularSize {
+import java.io.Serializable;
+
+public class RectangularSize implements Serializable {
     private int length;
     private int width;
 

@@ -3,11 +3,13 @@ package byog.Core.Object;
 import byog.Core.Index;
 import byog.TileEngine.TETile;
 
-public abstract class RectangularObject implements GameObject {
+import java.io.Serializable;
+
+public abstract class RectangularObject implements GameObject, Serializable {
     RectangularSize size = null;
     String objectName = null;
-    Index objectIndex = null;
-    TETile[][] world = null;
+    public Index objectIndex = null;
+    public TETile[][] world = null;
 
     public abstract void addTo(TETile[][] world, Index index);
 

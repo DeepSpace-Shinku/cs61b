@@ -1,10 +1,11 @@
 package byog.Core.Object;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import static java.lang.Math.abs;
 
-public class NumberGenerator {
+public class NumberGenerator implements Serializable{
     /**
      * Using the given seed to generate a number serial.
      */
