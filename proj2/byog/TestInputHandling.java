@@ -2,8 +2,7 @@ package byog.Core;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static byog.Core.InputHandling.*;
-import java.lang.reflect.*;
+import static byog.Core.StringInputHandling.*;
 
 public class TestInputHandling {
 
