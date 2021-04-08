@@ -7,7 +7,7 @@ import java.util.Random;
 public class PercolationStats {
     private double mean;
     private double stdDev;
-    private int[] Xs;
+    private double[] Xs;
     private int N;
     private int T;
     private Random rand;
@@ -20,14 +20,14 @@ public class PercolationStats {
         this.N = N;
         this.T = T;
         this.rand = new Random();
-        this.Xs = new int[T];
+        this.Xs = new double[T];
         for (int i = 0; i < T; i++){
             Percolation p = pf.make(N);
             while (!p.percolates()){
                 int index = getNotOpenedIndex(p);
                 p.open(index / N, index % N);
             }
-            Xs[i] = p.numberOfOpenSites();
+            Xs[i] = p.numberOfOpenSites() * 1.0 / (N * N);
         }
         calculateMean();
         calculateStdDev();
@@ -85,7 +85,7 @@ public class PercolationStats {
 
     public static void main(String[] args)
     {
-        PercolationStats ps = new PercolationStats(1000, 100, new PercolationFactory());
+        PercolationStats ps = new PercolationStats(100, 100, new PercolationFactory());
         System.out.println(ps.mean());
         System.out.println(ps.stddev());
         System.out.println(ps.confidenceLow());

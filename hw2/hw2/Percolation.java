@@ -7,9 +7,9 @@ import static org.junit.Assert.*;
 public class Percolation {
     private int N;
     private int numOfOpenSites;
-    WeightedQuickUnionUF set;
-    WeightedQuickUnionUF dualSet;
-    boolean opened[][];
+    private WeightedQuickUnionUF set;
+    private WeightedQuickUnionUF dualSet;
+    private boolean opened[][];
 
     public Percolation(int N)
     {
@@ -23,14 +23,16 @@ public class Percolation {
 
     public void open(int row, int col)
     {
-        opened[row][col] = true;
-        numOfOpenSites += 1;
-        connectAllOpenedAround(row, col);
-        if (row == 0){
-            connectTopToFirstLevel(col);
-        }
-        if (row == N - 1){
-            connectBottomToLastLevel(col);
+        if(opened[row][col] == false) {
+            opened[row][col] = true;
+            numOfOpenSites += 1;
+            connectAllOpenedAround(row, col);
+            if (row == 0) {
+                connectTopToFirstLevel(col);
+            }
+            if (row == N - 1) {
+                connectBottomToLastLevel(col);
+            }
         }
 
     }
@@ -62,15 +64,31 @@ public class Percolation {
 
     private void connectAllOpenedAround(int row, int col)
     {
-        connectIfOpened(row, col, row - 1, col);
-        connectIfOpened(row, col, row, col - 1);
-        connectIfOpened(row, col, row + 1, col);
-        connectIfOpened(row, col, row, col + 1);
+        if(!isOutOfBound(row - 1, col)) {
+            connectIfOpened(row, col, row - 1, col);
+        }
+        if(!isOutOfBound(row, col - 1)) {
+            connectIfOpened(row, col, row, col - 1);
+        }
+        if(!isOutOfBound(row + 1, col)) {
+            connectIfOpened(row, col, row + 1, col);
+        }
+        if(!isOutOfBound(row, col + 1)) {
+            connectIfOpened(row, col, row, col + 1);
+        }
+    }
+
+    private boolean isOutOfBound(int row, int col)
+    {
+        return row >= N || row < 0 || col >= N || col < 0;
     }
 
     private void connectIfOpened(int thisRow, int thisCol, int otherRow, int otherCol)
     {
-        if (otherRow >= 0 && otherRow < N && otherCol >= 0 && otherCol < N && opened[otherRow][otherCol]){
+        if (!(otherRow >= 0 && otherRow < N && otherCol >= 0 && otherCol < N)){
+            throw new IllegalArgumentException("Index out of bound");
+        }
+        if (opened[otherRow][otherCol]){
             set.union(xyTo1D(thisRow, thisCol), xyTo1D(otherRow, otherCol));
             dualSet.union(xyTo1D(thisRow, thisCol), xyTo1D(otherRow, otherCol));
         }
@@ -135,7 +153,6 @@ public class Percolation {
         p.open(9, 5);
         assertTrue(p.percolates());
         assertFalse(p.isFull(9,7));
-        System.out.println(20 / 5);
-        System.out.println(20 % 5);
+
     }
 }
