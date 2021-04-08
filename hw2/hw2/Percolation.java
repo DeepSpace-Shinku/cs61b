@@ -13,7 +13,11 @@ public class Percolation {
 
     public Percolation(int N)
     {
-        this.N = N;
+        if(N > 0) {
+            this.N = N;
+        }else{
+            throw new IllegalArgumentException("N should be greater than 0.");
+        }
         // let the last node be the bottom node and the one before last be the top node.
         this.set = new WeightedQuickUnionUF(N * N + 2);
         this.dualSet = new WeightedQuickUnionUF(N * N + 1);
