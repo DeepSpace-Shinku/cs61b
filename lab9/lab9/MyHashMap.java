@@ -35,6 +35,13 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
         }
     }
 
+    @Override
+    public boolean containsKey(K key)
+    {
+        int keyHash = hash(key);
+        return buckets[keyHash].containsKey(key);
+    }
+
     /** Computes the hash function of the given key. Consists of
      *  computing the hashcode, followed by modding by the number of buckets.
      *  To handle negative numbers properly, uses floorMod instead of %.
@@ -53,19 +60,40 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public V get(K key) {
-        throw new UnsupportedOperationException();
+        if(!containsKey(key)){
+            return null;
+        }
+        return buckets[hash(key)].get(key);
     }
 
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
-        throw new UnsupportedOperationException();
+        if(!containsKey(key)) size += 1;
+        buckets[hash(key)].put(key, value);
+        if (loadFactor() > MAX_LF){
+            resizeBuckets();
+        }
+    }
+
+    private void resizeBuckets()
+    {
+        ArrayMap<K, V>[] backup = buckets;
+        buckets = new ArrayMap[buckets.length * 2];
+        for (int i = 0; i < this.buckets.length; i += 1) {
+            this.buckets[i] = new ArrayMap<>();
+        }
+        for(ArrayMap<K, V> bucket: backup){
+            for(K key: bucket.keySet()){
+                if (key != null) buckets[hash(key)].put(key, bucket.get(key));
+            }
+        }
     }
 
     /* Returns the number of key-value mappings in this map. */
     @Override
     public int size() {
-        throw new UnsupportedOperationException();
+        return size;
     }
 
     //////////////// EVERYTHING BELOW THIS LINE IS OPTIONAL ////////////////
