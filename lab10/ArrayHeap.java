@@ -256,13 +256,19 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public T removeMin() {
         /* TODO: Your code here! */
-
-        int lastIndex = size();
         T minItem = getNode(1).item();
-        contents[1] = getNode(lastIndex);
-        contents[lastIndex] = null;
-        size -= 1;
-        sink(1);
+        if (size() > 1) {
+            int lastIndex = size();
+            contents[1] = getNode(lastIndex);
+            contents[lastIndex] = null;
+            size -= 1;
+            sink(1);
+
+        }
+        else{
+            size = 0;
+            contents[1] = null;
+        }
         return minItem;
     }
 
@@ -554,7 +560,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
             i += 1;
         }
     }
-    
+
 
     @Test
     public void TestEmptyContents()
