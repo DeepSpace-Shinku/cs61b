@@ -1,4 +1,7 @@
 import org.junit.Test;
+
+import java.lang.annotation.ElementType;
+
 import static org.junit.Assert.*;
 
 /**
@@ -28,7 +31,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int leftIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return 2 * i;
     }
 
     /**
@@ -36,7 +39,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int rightIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return 2 * i + 1;
     }
 
     /**
@@ -44,7 +47,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int parentIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return i / 2;
     }
 
     /**
@@ -108,7 +111,15 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         validateSinkSwimArg(index);
 
         /** TODO: Your code here. */
-        return;
+        Node node = getNode(index);
+        if (node.equals(contents[1])) return;
+
+        Node parent = getNode(parentIndex(index));
+        if (node.priority() >= parent.priority()) return;
+
+        swap(index, parentIndex(index));
+
+        swim(parentIndex(index));
     }
 
     /**
@@ -119,8 +130,48 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         validateSinkSwimArg(index);
 
         /** TODO: Your code here. */
-        return;
+        Node node = getNode(index);
+
+        if (hasChild(index)){
+            int smallerChildIndex = indexOfSmallerChild(index);
+            Node smallerChild = getNode(smallerChildIndex);
+            if (node.priority() > smallerChild.priority()){
+                swap(index, smallerChildIndex);
+                sink(smallerChildIndex);
+            }
+        }
     }
+
+    private boolean hasChild(int index)
+    {
+        return getNode(leftIndex(index)) != null || getNode(rightIndex(index)) != null;
+    }
+
+    /**
+     *  Get the child node with smaller priority of the given index. If
+     *  the node has only one child, then return the only child of it.
+     */
+    private int indexOfSmallerChild(int index)
+    {
+        if (!hasChild(index)){
+            throw new IllegalArgumentException("The number of children should be 2.");
+        }
+        Node leftChild = getNode(leftIndex(index));
+        Node rightChild = getNode(rightIndex(index));
+        if (leftChild == null){
+            return rightIndex(index);
+        }
+        if (rightChild == null){
+            return leftIndex(index);
+        }
+        if (leftChild.priority() < rightChild.priority()){
+            return leftIndex(index);
+        }
+        else{
+            return rightIndex(index);
+        }
+    }
+
 
     /**
      * Inserts an item with the given priority value. This is enqueue, or offer.
@@ -134,7 +185,54 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         }
 
         /* TODO: Your code here! */
+        Node node = new Node(item, priority);
+        int leftMostIndex = size() + 1;
+        contents[leftMostIndex] = node;
+        size += 1;
+        swim(leftMostIndex);
     }
+
+    /**
+     * There is size. We need not to compute it.
+
+    private int getLeftMostIndex()
+    {
+        return getLeftMostIndexHelper(1);
+    }
+
+    private int getLeftMostIndexHelper(int layer)
+    {
+        int index = (int) Math.pow(2, layer - 1);
+        Node node = getNode(index);
+        if (node == null) return index;
+        if (getNode(leftIndex(index)) == null) return leftIndex(index);
+        if (getNode(rightIndex(index)) == null) return rightIndex(index);
+        else {
+            if (getNode(leftIndex(leftIndex(index))) == null){
+                for (int i = (int) Math.pow(2, layer); i <= (int) Math.pow(2, layer + 1); i++){
+                    if (getNode(i) == null){
+                        return i;
+                    }
+                }
+            }else{
+                return getLeftMostIndexHelper(layer + 1);
+            }
+        }
+        return 0;
+    }
+     */
+
+    /** Method that is not effcient.
+     *  complexity: O(2^N)
+     *     private int getLeftMostIndexHelper(int index)
+     *     {
+     *         Node node = getNode(index);
+     *         if (node == null) return index;
+     *         if (getNode(leftIndex(index)) == null) return leftIndex(index);
+     *         if (getNode(rightIndex(index)) == null) return rightIndex(index);
+     *         else return Math.min(getLeftMostIndexHelper(leftIndex(index)), getLeftMostIndexHelper(rightIndex(index)));
+     *     }
+     */
 
     /**
      * Returns the Node with the smallest priority value, but does not remove it
@@ -143,7 +241,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public T peek() {
         /* TODO: Your code here! */
-        return null;
+        return contents[1].myItem;
     }
 
     /**
@@ -158,7 +256,14 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public T removeMin() {
         /* TODO: Your code here! */
-        return null;
+
+        int lastIndex = size();
+        T minItem = getNode(1).item();
+        contents[1] = getNode(lastIndex);
+        contents[lastIndex] = null;
+        size -= 1;
+        sink(1);
+        return minItem;
     }
 
     /**
@@ -181,7 +286,42 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public void changePriority(T item, double priority) {
         /* TODO: Your code here! */
-        return;
+        int index = indexOf(item);
+        Node node = getNode(index);
+        double oldPriority = node.priority();
+        node.myPriority = priority;
+        if (priority > oldPriority) {
+            sink(index);
+        }else{
+            swim(index);
+        }
+    }
+
+    /**
+     *  Return the index in CONTENTS of the given item.
+     *  If the item doesn't exists, throw an exception.
+     */
+    private int indexOf(T item)
+    {
+        int index = indexOfHelper(item, 1);
+        if (index == 0){
+            throw new RuntimeException("Cannot find the item.");
+        }
+        return index;
+    }
+
+    private int indexOfHelper(T item, int index)
+    {
+        Node node = getNode(index);
+        if (node == null) return 0;
+        T iItem = node.item();
+        if (item.equals(iItem)){
+            return index;
+        }else {
+            int findLeft = indexOfHelper(item, leftIndex(index));
+            int findRight = indexOfHelper(item, rightIndex(index));
+            return Math.max(findLeft, findRight);
+        }
     }
 
     /**
@@ -336,6 +476,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
 
         pq.insert("i", 9);
         assertEquals("i", pq.contents[2].myItem);
+        System.out.println(pq.toString());
 
         pq.insert("g", 7);
         pq.insert("d", 4);
@@ -412,6 +553,14 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
             assertEquals(expected[i], pq.removeMin());
             i += 1;
         }
+    }
+    
+
+    @Test
+    public void TestEmptyContents()
+    {
+        ExtrinsicPQ<String> pq = new ArrayHeap<>();
+        System.out.println(1);
     }
 
 }
