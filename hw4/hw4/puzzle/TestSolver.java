@@ -36,6 +36,8 @@ public class TestSolver {
         }
     }
 
+
+
     /** Takes as input a word puzzle string and returns a WordPuzzle
      *  object. For example, "kept, tent, kept-kent-tent, 13"
      *  would return a WordPuzzle with start = kept, goal = tent,
@@ -62,7 +64,7 @@ public class TestSolver {
         }
     }
 
-/* Uncomment once you've written Solver.
+/* Uncomment once you've written Solver.*/
     @Test(timeout = 10000)
     public void testWordPuzzles() {
         In in = new In("input/word_puzzles.txt");
@@ -79,9 +81,8 @@ public class TestSolver {
             assertEquals(errorMessage, wps.numMoves, s.moves());
         }
     }
- */
 
- /* Uncomment everything in this block once you've written Board.
+ /* Uncomment everything in this block once you've written Board.*/
      public static Board readBoard(String filename) {
         In in = new In(filename);
         int N = in.readInt();
@@ -145,5 +146,5 @@ public class TestSolver {
             Solver s = new Solver(b);
             assertEquals("Wrong number of moves on " + puzzleName, bps.numMoves, s.moves());
         }
-    }*/
+    }
 }

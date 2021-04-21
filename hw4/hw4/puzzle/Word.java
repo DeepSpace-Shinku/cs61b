@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 import edu.princeton.cs.introcs.In;
 
-public class Word implements WorldState {
+public class Word implements WorldState{
     private static Set<String> words;
     private static final String WORDFILE = "input/words10000.txt";
     private final String word;
@@ -115,4 +115,5 @@ public class Word implements WorldState {
         result = 31 * result + (goal != null ? goal.hashCode() : 0);
         return result;
     }
+
 }
