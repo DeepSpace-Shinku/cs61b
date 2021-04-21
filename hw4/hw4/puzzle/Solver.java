@@ -8,8 +8,8 @@ public class Solver
 {
     private final int INF = 2147483647;
     private List<WorldState> solution;
-    MinPQ<SearchNode> pq;
-    int moves;
+    private MinPQ<SearchNode> pq;
+    private int moves;
 
     private class SearchNode implements Comparable<SearchNode> {
         private SearchNode prev;

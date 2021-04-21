@@ -28,7 +28,7 @@ public class Board implements WorldState{
 
     public int tileAt(int x, int y){
         if (!(x < size() && y < size() && x >= 0 && y >= 0)) {
-            throw new IllegalArgumentException("x and y should between 0 and N - 1");
+            throw new IndexOutOfBoundsException("x and y should between 0 and N - 1");
         }
         return board[x][y];
     }
@@ -43,7 +43,7 @@ public class Board implements WorldState{
         int hammingNumber = 0;
         for (int x = 0; x < size(); x++){
             for (int y = 0; y < size(); y++){
-                if (this.tileAt(x, y) != xyTo1D(x, y) && tileAt(x, y) != BLANK) hammingNumber += 1;
+                if (tileAt(x, y) != BLANK && this.tileAt(x, y) != xyTo1D(x, y)) hammingNumber += 1;
             }
         }
         return hammingNumber;
@@ -82,7 +82,8 @@ public class Board implements WorldState{
 
     private int xyTo1D(int x, int y)
     {
-        return x + y * size() + 1;
+        if (x == size() - 1 && y == size() - 1) return BLANK;
+        return x * size() + y + 1;
     }
 
     private int oneDToX(int oneD)
@@ -171,39 +172,11 @@ public class Board implements WorldState{
         return s.toString();
     }
 
-    public static void main(String[] args)
+    @Override
+    public int hashCode()
     {
-        assertEquals(0, oDToX(1));
-        assertEquals(0, oDToY(1));
-        assertEquals(0, oDToX(2));
-        assertEquals(1, oDToY(2));
-        assertEquals(0, oDToX(3));
-        assertEquals(2, oDToY(3));
-        assertEquals(1, oDToX(4));
-        assertEquals(0, oDToY(4));
-        assertEquals(1, oDToX(5));
-        assertEquals(1, oDToY(5));
-        assertEquals(1, oDToX(6));
-        assertEquals(2, oDToY(6));
-        assertEquals(2, oDToX(7));
-        assertEquals(0, oDToY(7));
-        assertEquals(2, oDToX(8));
-        assertEquals(1, oDToY(8));
-        assertEquals(2, oDToX(9));
-        assertEquals(2, oDToY(9));
-        int[][] xy = new int[3][3];
-        xy[0][0] = 8;
-        xy[0][1] = 1;
-        xy[0][2] = 3;
-        xy[1][0] = 4;
-        xy[1][1] = 0;
-        xy[1][2] = 2;
-        xy[2][0] = 7;
-        xy[2][1] = 6;
-        xy[2][2] = 5;
-        Board board = new Board(xy);
-        Board board2 = new Board(xy);
-        assertEquals(10, board.estimatedDistanceToGoal());
-        assertTrue(board.equals(board2));
+        return 0;
     }
+    
+
 }
