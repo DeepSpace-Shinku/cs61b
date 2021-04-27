@@ -1,5 +1,7 @@
 import edu.princeton.cs.algs4.Queue;
 
+import static org.junit.Assert.assertEquals;
+
 public class MergeSort {
     /**
      * Removes and returns the smallest item that is in q1 or q2.
@@ -90,7 +92,21 @@ public class MergeSort {
         while (queueOfQueues.size() > 1){
             queueOfQueues = halve(queueOfQueues);
         }
-        items = queueOfQueues.dequeue();
+        if (!queueOfQueues.isEmpty()) {
+            items = queueOfQueues.dequeue();
+        }
         return items;
+    }
+
+    public static void main(String[] args)
+    {
+        Queue<String> q1 = new Queue<>();
+        //q1.enqueue("Alice");
+        //q1.enqueue("Vanessa");
+        //q1.enqueue("Ethan");
+        Queue<String> q2 = mergeSort(q1);
+        //assertEquals("Alice", q2.dequeue());
+        //assertEquals("Ethan", q2.dequeue());
+        //assertEquals("Vanessa", q2.dequeue());
     }
 }

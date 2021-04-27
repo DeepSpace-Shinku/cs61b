@@ -70,25 +70,38 @@ public class QuickSort {
         if (items.size() > 1) {
             Item pivot = getRandomItem(items);
             Queue<Item> less = new Queue<>();
-            Queue<Item> greater = new Queue<>();
             Queue<Item> equal = new Queue<>();
+            Queue<Item> greater = new Queue<>();
             partition(items, pivot, less, equal, greater);
-            less = quickSort(less);
-            greater = quickSort(greater);
-            items =  catenate(catenate(less, equal), greater);
+            quickSort(less);
+            quickSort(greater);
+            Queue<Item> sortedItems =  catenate(catenate(less, equal), greater);
+            while(!sortedItems.isEmpty()){
+                items.enqueue(sortedItems.dequeue());
+            }
         }
         return items;
     }
 
     public static void main(String[] args)
     {
-        Queue<String> q1 = new Queue<String>();
-        q1.enqueue("Alice");
-        q1.enqueue("Vanessa");
-        q1.enqueue("Ethan");
-        Queue<String> q2 = quickSort(q1);
-        assertEquals("Alice", q2.dequeue());
-        assertEquals("Ethan", q2.dequeue());
-        assertEquals("Vanessa", q2.dequeue());
+        Queue<Integer> q1 = new Queue<>();
+        q1.enqueue(6);
+        q1.enqueue(3);
+        q1.enqueue(8);
+        q1.enqueue(2);
+        q1.enqueue(9);
+        q1.enqueue(1);
+        q1.enqueue(4);
+        q1.enqueue(2);
+        q1.enqueue(6);
+        quickSort(q1);
+        while (!q1.isEmpty())
+        {
+            System.out.println(q1.dequeue());
+        }
+        //assertEquals("Alice", q2.dequeue());
+        //assertEquals("Ethan", q2.dequeue());
+        //assertEquals("Vanessa", q2.dequeue());
     }
 }
