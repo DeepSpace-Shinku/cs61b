@@ -1,5 +1,7 @@
 import edu.princeton.cs.algs4.Queue;
 
+import static org.junit.Assert.assertEquals;
+
 public class QuickSort {
     /**
      * Returns a new queue that contains the given queues catenated together.
@@ -48,12 +50,45 @@ public class QuickSort {
             Queue<Item> unsorted, Item pivot,
             Queue<Item> less, Queue<Item> equal, Queue<Item> greater) {
         // Your code here!
+        while (!unsorted.isEmpty()){
+            Item item = unsorted.dequeue();;
+            if (item.compareTo(pivot) < 0){
+                less.enqueue(item);
+            }else if (item.compareTo(pivot) > 0){
+                greater.enqueue(item);
+            }else{
+                equal.enqueue(item);
+            }
+        }
+
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> quickSort(
             Queue<Item> items) {
         // Your code here!
+        if (items.size() > 1) {
+            Item pivot = getRandomItem(items);
+            Queue<Item> less = new Queue<>();
+            Queue<Item> greater = new Queue<>();
+            Queue<Item> equal = new Queue<>();
+            partition(items, pivot, less, equal, greater);
+            less = quickSort(less);
+            greater = quickSort(greater);
+            items =  catenate(catenate(less, equal), greater);
+        }
         return items;
+    }
+
+    public static void main(String[] args)
+    {
+        Queue<String> q1 = new Queue<String>();
+        q1.enqueue("Alice");
+        q1.enqueue("Vanessa");
+        q1.enqueue("Ethan");
+        Queue<String> q2 = quickSort(q1);
+        assertEquals("Alice", q2.dequeue());
+        assertEquals("Ethan", q2.dequeue());
+        assertEquals("Vanessa", q2.dequeue());
     }
 }
