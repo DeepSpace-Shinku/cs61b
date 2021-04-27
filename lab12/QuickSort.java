@@ -1,6 +1,7 @@
 import edu.princeton.cs.algs4.Queue;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class QuickSort {
     /**
@@ -96,12 +97,16 @@ public class QuickSort {
         q1.enqueue(2);
         q1.enqueue(6);
         quickSort(q1);
-        while (!q1.isEmpty())
-        {
-            System.out.println(q1.dequeue());
-        }
-        //assertEquals("Alice", q2.dequeue());
-        //assertEquals("Ethan", q2.dequeue());
-        //assertEquals("Vanessa", q2.dequeue());
+        assertEquals(9, q1.size());
+        assertEquals(1, (int) q1.dequeue());
+        assertEquals(2, (int) q1.dequeue());
+        assertEquals(2, (int) q1.dequeue());
+        assertEquals(3, (int) q1.dequeue());
+        assertEquals(4, (int) q1.dequeue());
+        assertEquals(6, (int) q1.dequeue());
+        assertEquals(6, (int) q1.dequeue());
+        assertEquals(8, (int) q1.dequeue());
+        assertEquals(9, (int) q1.dequeue());
+        assertTrue(q1.isEmpty());
     }
 }

@@ -1,6 +1,7 @@
 import edu.princeton.cs.algs4.Queue;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MergeSort {
     /**
@@ -92,21 +93,45 @@ public class MergeSort {
         while (queueOfQueues.size() > 1){
             queueOfQueues = halve(queueOfQueues);
         }
+        Queue<Item> sortedItems;
         if (!queueOfQueues.isEmpty()) {
-            items = queueOfQueues.dequeue();
+            sortedItems = queueOfQueues.dequeue();
+            while(!items.isEmpty())
+            {
+                items.dequeue();
+            }
+            while(!sortedItems.isEmpty())
+            {
+                items.enqueue(sortedItems.dequeue());
+            }
         }
+
         return items;
     }
 
     public static void main(String[] args)
     {
-        Queue<String> q1 = new Queue<>();
-        //q1.enqueue("Alice");
-        //q1.enqueue("Vanessa");
-        //q1.enqueue("Ethan");
-        Queue<String> q2 = mergeSort(q1);
-        //assertEquals("Alice", q2.dequeue());
-        //assertEquals("Ethan", q2.dequeue());
-        //assertEquals("Vanessa", q2.dequeue());
+        Queue<Integer> q1 = new Queue<>();
+        q1.enqueue(6);
+        q1.enqueue(3);
+        q1.enqueue(8);
+        q1.enqueue(2);
+        q1.enqueue(9);
+        q1.enqueue(1);
+        q1.enqueue(4);
+        q1.enqueue(2);
+        q1.enqueue(6);
+        mergeSort(q1);
+        assertEquals(9, q1.size());
+        assertEquals(1, (int) q1.dequeue());
+        assertEquals(2, (int) q1.dequeue());
+        assertEquals(2, (int) q1.dequeue());
+        assertEquals(3, (int) q1.dequeue());
+        assertEquals(4, (int) q1.dequeue());
+        assertEquals(6, (int) q1.dequeue());
+        assertEquals(6, (int) q1.dequeue());
+        assertEquals(8, (int) q1.dequeue());
+        assertEquals(9, (int) q1.dequeue());
+        assertTrue(q1.isEmpty());
     }
 }
