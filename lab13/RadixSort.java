@@ -50,8 +50,6 @@ public class RadixSort {
         int[] starts = setStarts(asciis, index);
         String[] result = new String[asciis.length];
         for (String s: asciis){
-            int a = asciiAt(s, index);
-            int st = starts[a];
             result[starts[asciiAt(s, index)]] = s;
             starts[asciiAt(s, index)] += 1;
         }
@@ -62,7 +60,6 @@ public class RadixSort {
     {
         int[] counting = new int[257];
         for (String s: asciis){
-            int a = asciiAt(s, index);
             counting[asciiAt(s, index)] += 1;
         }
         return counting;
@@ -99,26 +96,14 @@ public class RadixSort {
      * Return the ASCII code plus 1 of the nth character of a string.
      * If the length of the string is less than n, return LEAST(0).
      */
-    private static int asciiAt(String s, int index)
-    {
+    private static int asciiAt(String s, int index) {
         final int LEAST = 0;
-        if  (s.length() <= index) {
+        if (s.length() <= index) {
             return LEAST;
-        }else {
-            int ascii;
-            if ((int) s.charAt(index) >= 0){
-                ascii = (int) s.charAt(index);
-            }else{
-                ascii = 256 + (int) s.charAt(index);
-            }
-            return ascii + 1;
+        } else {
+            return (int) s.charAt(index) + 1;
+
         }
     }
 
-
-    public  static void main(String[] args)
-    {
-        String s = "hello";
-        System.out.println(s.charAt(0));
-    }
 }
