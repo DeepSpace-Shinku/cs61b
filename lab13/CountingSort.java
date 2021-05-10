@@ -65,8 +65,80 @@ public class CountingSort {
      *
      * @param arr int array that will be sorted
      */
+
+
     public static int[] betterCountingSort(int[] arr) {
         // TODO make counting sort work with arrays containing negative numbers.
-        return null;
+        int min, max;
+        min = findMin(arr);
+        max = findMax(arr);
+        IndexFinder finder = new IndexFinder(min, max);
+
+        int[] counts = new int[finder.getSize()];
+        for (int i: arr){
+            counts[finder.getIndex(i)] += 1;
+        }
+
+        int[] start = new int[finder.getSize()];
+        int cumulative = 0;
+        for (int i = 0; i < counts.length; i++) {
+            start[i] = cumulative;
+            cumulative += counts[i];
+        }
+
+        int[] sorted = new int[arr.length];
+        for (int i: arr){
+            sorted[start[finder.getIndex(i)]] = i;
+            start[finder.getIndex(i)] += 1;
+        }
+        return sorted;
     }
+
+    private static int findMax(int[] arr)
+    {
+        int max = Integer.MIN_VALUE;
+        for (int i: arr){
+            if (i > max){
+                max = i;
+            }
+        }
+        return max;
+    }
+
+    private static int findMin(int[] arr)
+    {
+        int min = Integer.MAX_VALUE;
+        for (int i: arr){
+            if (i < min){
+                min = i;
+            }
+        }
+        return min;
+    }
+
+    /**
+     * A class which has the method getIndex, to
+     * find the index in the array which is corresponding
+     * to the given number.
+     */
+    private static class IndexFinder
+    {
+        private int min, max;
+        public IndexFinder(int min, int max)
+        {
+            this.min = min;
+            this.max = max;
+        }
+
+        public int getIndex(int x)
+        {
+            return x - min;
+        }
+
+        public int getSize()
+        {
+            return max - min + 1;
+        }
+    }
+
 }

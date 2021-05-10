@@ -17,8 +17,27 @@ public class RadixSort {
      */
     public static String[] sort(String[] asciis) {
         // TODO: Implement LSD Sort
-        return null;
+        int maxLen = maxLength(asciis);
+        String[] sorted, sorting = asciis;
+        for (int i = maxLen - 1; i >= 0; i--){
+            sorting = sortHelperLSD(asciis, i);
+        }
+        sorted = sorting;
+        return sorted;
     }
+
+    // Return the maxLength of the all the strings;
+    private static int maxLength(String[] asciis)
+    {
+        int max = 0;
+        for (String s: asciis){
+            if (s.length() > max){
+                max = s.length();
+            }
+        }
+        return max;
+    }
+
 
     /**
      * LSD helper method that performs a destructive counting sort the array of
@@ -26,9 +45,36 @@ public class RadixSort {
      * @param asciis Input array of Strings
      * @param index The position to sort the Strings on.
      */
-    private static void sortHelperLSD(String[] asciis, int index) {
+    private static String[] sortHelperLSD(String[] asciis, int index) {
         // Optional LSD helper method for required LSD radix sort
-        return;
+        int[] starts = setStarts(asciis, index);
+        String[] result = new String[asciis.length];
+        for (String s: asciis){
+            result[starts[asciiAt(s, index)]] = s;
+            starts[asciiAt(s, index)] += 1;
+        }
+        return result;
+    }
+
+    private static int[] setCounting(String[] asciis, int index)
+    {
+        int[] counting = new int[257];
+        for (String s: asciis){
+            counting[asciiAt(s, index)] += 1;
+        }
+        return counting;
+    }
+
+    private static int[] setStarts(String[] asciis, int index)
+    {
+        int[] counting = setCounting(asciis, index);
+        int[] starts = new int[counting.length];
+        int cumulative = 0;
+        for (int i = 0; i < counting.length; i++) {
+            starts[i] = cumulative;
+            cumulative += counting[i];
+        }
+        return starts;
     }
 
     /**
@@ -44,5 +90,26 @@ public class RadixSort {
     private static void sortHelperMSD(String[] asciis, int start, int end, int index) {
         // Optional MSD helper method for optional MSD radix sort
         return;
+    }
+
+    /**
+     * Return the ASCII code plus 1 of the nth character of a string.
+     * If the length of the string is less than n, return LEAST(0).
+     */
+    private static int asciiAt(String s, int index)
+    {
+        final int LEAST = 0;
+        if  (s.length() <= index) {
+            return LEAST;
+        }else {
+            return (int) s.charAt(index) + 1;
+        }
+    }
+
+
+    public  static void main(String[] args)
+    {
+        String s = "hello";
+        System.out.println(s.charAt(0));
     }
 }
