@@ -20,7 +20,7 @@ public class RadixSort {
         int maxLen = maxLength(asciis);
         String[] sorted, sorting = asciis;
         for (int i = maxLen - 1; i >= 0; i--){
-            sorting = sortHelperLSD(asciis, i);
+            sorting = sortHelperLSD(sorting, i);
         }
         sorted = sorting;
         return sorted;
@@ -50,6 +50,8 @@ public class RadixSort {
         int[] starts = setStarts(asciis, index);
         String[] result = new String[asciis.length];
         for (String s: asciis){
+            int a = asciiAt(s, index);
+            int st = starts[a];
             result[starts[asciiAt(s, index)]] = s;
             starts[asciiAt(s, index)] += 1;
         }
@@ -60,6 +62,7 @@ public class RadixSort {
     {
         int[] counting = new int[257];
         for (String s: asciis){
+            int a = asciiAt(s, index);
             counting[asciiAt(s, index)] += 1;
         }
         return counting;
@@ -102,7 +105,13 @@ public class RadixSort {
         if  (s.length() <= index) {
             return LEAST;
         }else {
-            return (int) s.charAt(index) + 1;
+            int ascii;
+            if ((int) s.charAt(index) >= 0){
+                ascii = (int) s.charAt(index);
+            }else{
+                ascii = 256 + (int) s.charAt(index);
+            }
+            return ascii + 1;
         }
     }
 
