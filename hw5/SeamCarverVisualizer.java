@@ -13,6 +13,8 @@
  *  ******************************************************************************/
 
 import edu.princeton.cs.algs4.Picture;
+import images.SeamCarver;
+
 import java.awt.Color;
 import java.awt.FileDialog;
 import java.awt.Toolkit;
