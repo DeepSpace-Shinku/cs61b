@@ -9,11 +9,10 @@ import java.util.List;
 
 public class SeamCarver {
     private Picture picture;
-    //private List<Double> energies = new ArrayList<ArrayList<Double>>();
 
     public SeamCarver(Picture picture)
     {
-        this.picture = picture;
+        this.picture = new Picture(picture);
     }
 
     private class SearchNode{
@@ -43,7 +42,8 @@ public class SeamCarver {
     /**
      * Return the height of the current picture
      */
-    public int height() {
+    public int height()
+    {
         return picture.height();
     }
 
@@ -298,18 +298,4 @@ public class SeamCarver {
         }
         return transposed;
     }
-
-    public static void main(String[] args)
-    {
-        int x = 1, y = 2, z = 3;
-        System.out.println(smallestIndex(x, y, z) == -1);
-        System.out.println(smallestIndex(x, z, y) == -1);
-        System.out.println(smallestIndex(y, x, z) == 0);
-        System.out.println(smallestIndex(y, z, x) == 1);
-        System.out.println(smallestIndex(z, x, y) == 0);
-        System.out.println(smallestIndex(z, y, x) == 1);
-    }
-
-
-
 }

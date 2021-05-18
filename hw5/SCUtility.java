@@ -11,7 +11,6 @@ import java.awt.Color;
 
 import edu.princeton.cs.algs4.Picture;
 import edu.princeton.cs.algs4.StdRandom;
-import images.SeamCarver;
 
 public class SCUtility {
 
