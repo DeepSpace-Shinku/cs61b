@@ -36,10 +36,15 @@ public class TestPlip {
 
     @Test
     public void testReplicate() {
+        Plip parent = new Plip(2);
+        Plip child = parent.replicate();
+        assertNotSame(parent, child);
+        assertEquals(1, parent.energy(), 0.001);
+        assertEquals(1, child.energy(), 0.001);
 
     }
 
-    //@Test
+    @Test
     public void testChoose() {
         Plip p = new Plip(1.2);
         HashMap<Direction, Occupant> surrounded = new HashMap<Direction, Occupant>();
@@ -56,7 +61,26 @@ public class TestPlip {
         Action expected = new Action(Action.ActionType.STAY);
 
         assertEquals(expected, actual);
+
+        Plip p1 = new Plip(1.2);
+        HashMap<Direction, Occupant> surrounded1 = new HashMap<Direction, Occupant>();
+        surrounded1.put(Direction.TOP, new Impassible());
+        surrounded1.put(Direction.BOTTOM, new Impassible());
+        surrounded1.put(Direction.LEFT, new Impassible());
+        surrounded1.put(Direction.RIGHT, new Empty());
+
+        actual = p1.chooseAction(surrounded1);
+        expected = new Action(Action.ActionType.REPLICATE, Direction.RIGHT);
+
+        p1.reduceEnergy(1);
+        actual = p1.chooseAction(surrounded1);
+        expected = new Action(Action.ActionType.STAY);
+
+
+        assertEquals(expected, actual);
     }
+
+
 
     public static void main(String[] args) {
         System.exit(jh61b.junit.textui.runClasses(TestPlip.class));
