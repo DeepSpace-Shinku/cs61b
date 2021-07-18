@@ -107,7 +107,12 @@ public class SeamCarverVisualizer {
         if (args[2].equals("y")) {
             scv.visualizeHorizontalCarve(sc, N);
         } else {
-            scv.visualizeVerticalCarve(sc, N);
+            if (args[2].equals("x")) {
+                scv.visualizeVerticalCarve(sc, N);
+            }else{
+                scv.visualizeHorizontalCarve(sc, (int) N * 9 / 16);
+                scv.visualizeVerticalCarve(sc, N);
+            }
         }
     }
 }

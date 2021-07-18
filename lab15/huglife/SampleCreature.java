@@ -1,4 +1,6 @@
 package huglife;
+import creatures.Creature;
+
 import java.awt.Color;
 import java.util.Map;
 import java.util.List;
@@ -27,7 +29,7 @@ public class SampleCreature extends Creature {
     /** blue color. */
     private int b = 76;
     /** probability of taking a move when ample space available. */
-    private double moveProbability = 0.2;
+    private double moveProbability = 0.9;
     /** degree of color shift to allow. */
     private int colorShift = 5;
     /** fraction of energy to retain when replicating. */

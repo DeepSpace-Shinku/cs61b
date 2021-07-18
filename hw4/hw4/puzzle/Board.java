@@ -51,13 +51,13 @@ public class Board implements WorldState{
 
     public int manhattan()
     {
-        int mahattanNumber = 0;
+        int manhattan = 0;
         for (int x = 0; x < size(); x++){
             for (int y = 0; y < size(); y++){
-                mahattanNumber += xyToManhattanError(x, y);
+                manhattan += xyToManhattanError(x, y);
             }
         }
-        return mahattanNumber;
+        return manhattan;
     }
 
     public boolean equals(Object o)
@@ -177,6 +177,4 @@ public class Board implements WorldState{
     {
         return 0;
     }
-    
-
 }

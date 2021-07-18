@@ -20,7 +20,7 @@ public class Clorus extends Creature {
     }
     @Override
     public void move() {
-        this.reduceEnergy(0.03);
+        this.reduceEnergy(0.003);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Clorus extends Creature {
 
     @Override
     public void stay() {
-        this.reduceEnergy(0.01);
+        this.reduceEnergy(0.001);
     }
 
     @Override
@@ -48,12 +48,12 @@ public class Clorus extends Creature {
             return new Action(Action.ActionType.STAY);
         }else{
             List<Direction> plips = getNeighborsOfType(neighbors, "plip");
-            if (!plips.isEmpty()){
+            if (!plips.isEmpty() && HugLifeUtils.random() < 0.7){
                 Direction moveDir = HugLifeUtils.randomEntry(plips);
                 return new Action(Action.ActionType.ATTACK, moveDir);
             }else{
                 Direction moveDir = HugLifeUtils.randomEntry(empties);
-                if (energy() >= 1){
+                if (energy() >= 0.1){
                     return new Action(Action.ActionType.REPLICATE, moveDir);
                 }else{
                     return new Action(Action.ActionType.MOVE, moveDir);
@@ -64,6 +64,6 @@ public class Clorus extends Creature {
 
     @Override
     public Color color() {
-        return new Color(34, 0, 231);
+        return color;
     }
 }

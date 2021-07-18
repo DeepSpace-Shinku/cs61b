@@ -102,7 +102,6 @@ public class RadixSort {
             return LEAST;
         } else {
             return (int) s.charAt(index) + 1;
-
         }
     }
 

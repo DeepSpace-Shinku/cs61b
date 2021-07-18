@@ -1,5 +1,7 @@
 package huglife;
 
+import creatures.Creature;
+
 import java.util.Queue;
 import java.util.ArrayDeque;
 import java.util.HashMap;
