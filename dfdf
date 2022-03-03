@@ -1,0 +1,263 @@
+[33mcommit d547e8b2bd8ea824ab43bb40077933f8d63ca19e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Thu Mar 3 15:57:12 2022 +0800
+
+    proj3 rastering completed
+
+[33mcommit 740eb9fd4b4f4bb77cf2918c9e96e0cfb5af3bfc[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Tue Mar 1 22:37:43 2022 +0800
+
+    Add README file
+
+[33mcommit 998f4a2ef66c04b3931cba110a0ad4664d85a81d[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Tue Mar 1 15:15:20 2022 +0800
+
+    Refine the format of README file
+
+[33mcommit 0ae5472293d3fc95a1d56764998267a0f5bcc80f[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Mon Feb 28 23:15:31 2022 +0800
+
+    Create README.md
+
+[33mcommit 01deb5c0051b9d190b3ccccae099aca5c2bd53a3[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Mon Feb 28 14:23:53 2022 +0800
+
+    remove duplicate files
+
+[33mcommit 3c24c64a4a94fc8600f5ea41a0b0e77e795bf4c4[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Mon Feb 28 14:12:30 2022 +0800
+
+    delete duplicate files
+
+[33mcommit 861c905c8686769e63f23520f32424bc29aa1f3c[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Mon Feb 28 13:23:53 2022 +0800
+
+    Remove duplicate files
+
+[33mcommit acc9afe16820fdb094c5323f02dbd8d51a7dfb58[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Mon Feb 28 09:50:54 2022 +0800
+
+    Remove duplicate files
+    
+    Delete proj2/proj2 directory
+
+[33mcommit fb06d16a073a26d777b7ad47e8612e50c5cdab28[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Fri Feb 25 15:27:51 2022 +0800
+
+    Update README.md
+    
+    Add detailed infomation of the readme file
+
+[33mcommit 5746ecd085d02cace125bbebf35e0af89002f7b4[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Thu Feb 24 20:10:18 2022 +0800
+
+    sync
+    
+    sync the local changes
+
+[33mcommit d5ec4ff76189478041662ad8d4ba6bacf150840d[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Sun Jul 18 17:54:49 2021 +0800
+
+    sync
+
+[33mcommit f715fd853277d69d388ae3db2b1969f66eaea18b[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Wed Mar 24 20:39:26 2021 +0800
+
+    sync all the chages
+
+[33mcommit ef8a2589938abd3b2a23934c8878ddb1f85c7b94[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Wed Mar 24 20:37:40 2021 +0800
+
+    proj2 finished
+
+[33mcommit 94868da462b75c7e47bec7262b85334ee94ed5ae[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Sun Mar 7 16:37:15 2021 +0800
+
+    proj1b completed
+    
+    proj1b completed
+
+[33mcommit 3d8ce1df2c896a959758db26dda7c18d500316d2[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Fri Mar 5 16:06:46 2021 +0800
+
+    ArrayDeque problems fixed
+
+[33mcommit 651ba50855b8a9a4d1c40cea680f5e3d5f018b01[m
+Author: Li Yifei <liyf@hdu.edu.com>
+Date:   Fri Mar 5 11:33:11 2021 +0800
+
+    proj1a complete
+
+[33mcommit 09a68fe136155921a8565b51b7da5afb201ff939[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Thu May 20 20:49:38 2021 +0800
+
+    lab15 completed
+
+[33mcommit 8461800a74ea0dd6a6313b9787fd633ece88587e[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Wed May 19 19:31:15 2021 +0800
+
+    lab14 completed
+
+[33mcommit 7f6b4f842263883d2c7645869ec24d1bdaed1376[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:37:12 2021 +0800
+
+    Delete MazeExplorer.java
+
+[33mcommit 7ac7e2c6ce1753921a2e6627fe27fa2cdde82741[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:37:04 2021 +0800
+
+    Delete MazeDepthFirstPaths.java
+
+[33mcommit e73ee7aa38ef053943f94f75e86bdd54a3265176[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:36:56 2021 +0800
+
+    Delete MazeCycles.java
+
+[33mcommit 5d6e22ab2aa24acddb80551001bb6c1f6b9f29fb[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:36:47 2021 +0800
+
+    Delete MazeBreadthFirstPaths.java
+
+[33mcommit c1e0c1f4f60939d4940a68b36a17378f3cb099de[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:36:40 2021 +0800
+
+    Delete MazeAStarPath.java
+
+[33mcommit 70ba1a899ae1d140d40435eee2bc7c012be9e3c0[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:36:31 2021 +0800
+
+    Delete Maze.java
+
+[33mcommit e10670e056a7408d87125761df28efece2c38221[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:36:21 2021 +0800
+
+    Delete DepthFirstDemo.java
+
+[33mcommit d221ea0cc7f62eef5c69caaf42bb88448eed1008[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:36:12 2021 +0800
+
+    Delete CyclesDemo.java
+
+[33mcommit 2cb15743fa3b22bc40b0aa2e8c5c20ba91778a73[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:36:03 2021 +0800
+
+    Delete BreadthFirstDemo.java
+
+[33mcommit b1e75794df9198319a36c8b277c488909311fe1d[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:35:55 2021 +0800
+
+    Delete AStarDemo.java
+
+[33mcommit d7cc12011cdeeff8361545d7df56101a33b4069c[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 15:00:07 2021 +0800
+
+    Fix a bug
+    
+    Modified the SeamCarver.picture() method that each call to picture() returns a new picture.
+
+[33mcommit ca2e2ef0166226cad0d12789e7f287b0a9e834c4[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 14:55:36 2021 +0800
+
+    bugs fixed
+    
+    Fixed the problem of not making a copy of the original picture.
+    Fixed the problem of APIs(Deleting the testing main function in SeamCarver.java)
+
+[33mcommit 778c13c70d0aee1ecae01d3ce6e8d0b54b049211[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 14:42:18 2021 +0800
+
+    Fix a problem
+    
+    Fix the path problem of the source file SeamCarver.java
+
+[33mcommit edc8ca8921ee5251f7611dfd4fc9339b4fd965e0[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Tue May 18 14:38:46 2021 +0800
+
+    hw5 completed
+
+[33mcommit 5e5de8d36465b9d4510f3749200da429138619fd[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Mon May 10 16:28:34 2021 +0800
+
+    refactor code
+    
+    Refine the format of the code
+
+[33mcommit 9c3259276268f164dfdb55b165454977f57149b5[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Mon May 10 16:18:45 2021 +0800
+
+    bug fixed
+    
+    fixed a typo
+
+[33mcommit 5becc593bf57efcb5d60ee3e2cb222c431587f1e[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Mon May 10 15:58:45 2021 +0800
+
+    lab 12 fixed
+    
+    Java will converting a char to negative number, and will cause error order.
+    Fixed this problem.
+
+[33mcommit d36abda1dc606f75a05432b2447b1ed5b8881bb5[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Mon May 10 15:25:55 2021 +0800
+
+    Delete .gitmodules
+
+[33mcommit 1082c9b228fd8730d9b5ee0fbea8ed88f6cd1b42[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Mon May 10 15:25:39 2021 +0800
+
+    Delete .gitignore
+
+[33mcommit 2235111cfbe8de998ddc8f46b6f88783ed450614[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Mon May 10 15:25:30 2021 +0800
+
+    Delete TrivialMazeExplorer.java
+
+[33mcommit 3dd516f3c86be7e3d007f36b2cf1d6c0764fb284[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Mon May 10 15:25:21 2021 +0800
+
+    Delete maze.txt
+
+[33mcommit c213ef5af0a6f8d2cfbe259d90c47c67b6f61fd5[m
+Author: DeepSpace-Shinku <78863892+DeepSpace-Shinku@users.noreply.github.com>
+Date:   Mon May 10 15:25:12 2021 +0800
+
+    Delete TrivialMazeExplorerDemo.java
+
+[33mcommit 4f

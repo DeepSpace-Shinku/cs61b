@@ -60,10 +60,10 @@ public class Rasterer {
         upperY = getYIndex(requiredULLat, depth);
         lowerY = getYIndex(requiredLRLat, depth);
 
-        rasterULLat = upperY * latPerGrid(depth) + MapServer.ROOT_ULLAT;
-        rasterULLon = leftX * lonPerGrid(depth) + MapServer.ROOT_ULLON;
-        rasterLRLat = (lowerY + 1) * latPerGrid(depth) + MapServer.ROOT_ULLAT;
-        rasterLRLon = (rightX + 1) * lonPerGrid(depth) + MapServer.ROOT_ULLON;
+        rasterULLat = Math.min(upperY * latPerGrid(depth) + MapServer.ROOT_ULLAT, MapServer.ROOT_ULLAT);
+        rasterULLon = Math.max(leftX * lonPerGrid(depth) + MapServer.ROOT_ULLON, MapServer.ROOT_ULLON);
+        rasterLRLat = Math.max((lowerY + 1) * latPerGrid(depth) + MapServer.ROOT_ULLAT, MapServer.ROOT_LRLAT);
+        rasterLRLon = Math.min((rightX + 1) * lonPerGrid(depth) + MapServer.ROOT_ULLON, MapServer.ROOT_LRLON);
 
 
 
@@ -120,7 +120,10 @@ public class Rasterer {
      */
     private int getXIndex(double lon, int depth)
     {
-        return (int)((lon - MapServer.ROOT_ULLON) / lonPerGrid(depth));
+        int result = (int)((lon - MapServer.ROOT_ULLON) / lonPerGrid(depth));
+        if (result < 0) return 0;
+        if (result >= Math.pow(2, depth)) return (int)(Math.pow(2, depth) - 1);
+        return result;
     }
 
     /**
@@ -130,7 +133,10 @@ public class Rasterer {
      */
     private int getYIndex(double lat, int depth)
     {
-        return (int)Math.abs((lat - MapServer.ROOT_ULLAT) / latPerGrid(depth));
+        int result = (int)Math.abs((lat - MapServer.ROOT_ULLAT) / latPerGrid(depth));
+        if (result < 0) return 0;
+        if (result >= Math.pow(2, depth)) return (int)(Math.pow(2, depth) - 1);
+        return result;
     }
 
     private String[][] setRenderGrid(int leftX, int rightX, int upperY, int lowerY, int depth)
@@ -162,5 +168,25 @@ public class Rasterer {
         if (requiredULLat < MapServer.ROOT_LRLAT || requiredLRLat > MapServer.ROOT_ULLAT ||
                 requiredULLon > MapServer.ROOT_LRLON || requiredLRLon < MapServer.ROOT_ULLON) return false;
         return true;
+    }
+
+    public static void main(String[] args){
+        Rasterer r = new Rasterer();
+        Map<String, Double> m =  new HashMap<>();
+        m.put("lrlon", -122.2104604264636);
+        m.put("ullon", -122.30410170759153);
+        m.put("w", 1091.0);
+        m.put("h", 566.0);
+        m.put("ullat", 37.870213571328854);
+        m.put("lrlat", 37.8318576119893);
+        Map<String, Object> result = r.getMapRaster(m);
+        System.out.println(result);
+        String[][] grid = (String[][]) result.get("render_grid");
+        for(String[] line: grid){
+            for(String s: line){
+                System.out.println(s);
+            }
+        }
+
     }
 }
