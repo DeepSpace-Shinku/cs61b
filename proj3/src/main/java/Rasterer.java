@@ -170,23 +170,4 @@ public class Rasterer {
         return true;
     }
 
-    public static void main(String[] args){
-        Rasterer r = new Rasterer();
-        Map<String, Double> m =  new HashMap<>();
-        m.put("lrlon", -122.2104604264636);
-        m.put("ullon", -122.30410170759153);
-        m.put("w", 1091.0);
-        m.put("h", 566.0);
-        m.put("ullat", 37.870213571328854);
-        m.put("lrlat", 37.8318576119893);
-        Map<String, Object> result = r.getMapRaster(m);
-        System.out.println(result);
-        String[][] grid = (String[][]) result.get("render_grid");
-        for(String[] line: grid){
-            for(String s: line){
-                System.out.println(s);
-            }
-        }
-
-    }
 }

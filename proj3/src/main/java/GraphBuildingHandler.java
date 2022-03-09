@@ -2,9 +2,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  *  Parses OSM XML files using an XML SAX parser. Used to construct the graph of roads for
@@ -38,6 +36,9 @@ public class GraphBuildingHandler extends DefaultHandler {
                     "secondary_link", "tertiary_link"));
     private String activeState = "";
     private final GraphDB g;
+    Stack<Long> nodesOnTheWay = new Stack<>();
+    boolean validWay;
+    Node node =  null;
 
     /**
      * Create a new GraphBuildingHandler.
@@ -74,6 +75,11 @@ public class GraphBuildingHandler extends DefaultHandler {
 
             /* TODO Use the above information to save a "node" to somewhere. */
             /* Hint: A graph-like structure would be nice. */
+            long id = Long.parseLong(attributes.getValue("id"));
+            double lat = Double.parseDouble(attributes.getValue("lat"));
+            double lon = Double.parseDouble(attributes.getValue("lon"));
+            node = new Node(id, lat, lon);
+            g.addVertex(node);
 
         } else if (qName.equals("way")) {
             /* We encountered a new <way...> tag. */
@@ -82,13 +88,13 @@ public class GraphBuildingHandler extends DefaultHandler {
         } else if (activeState.equals("way") && qName.equals("nd")) {
             /* While looking at a way, we found a <nd...> tag. */
             //System.out.println("Id of a node in this way: " + attributes.getValue("ref"));
-
             /* TODO Use the above id to make "possible" connections between the nodes in this way */
             /* Hint1: It would be useful to remember what was the last node in this way. */
             /* Hint2: Not all ways are valid. So, directly connecting the nodes here would be
             cumbersome since you might have to remove the connections if you later see a tag that
             makes this way invalid. Instead, think of keeping a list of possible connections and
             remember whether this way is valid or not. */
+            nodesOnTheWay.add(Long.parseLong(attributes.getValue("ref")));
 
         } else if (activeState.equals("way") && qName.equals("tag")) {
             /* While looking at a way, we found a <tag...> tag. */
@@ -101,6 +107,7 @@ public class GraphBuildingHandler extends DefaultHandler {
                 //System.out.println("Highway type: " + v);
                 /* TODO Figure out whether this way and its connections are valid. */
                 /* Hint: Setting a "flag" is good enough! */
+                validWay = ALLOWED_HIGHWAY_TYPES.contains(v);
             } else if (k.equals("name")) {
                 //System.out.println("Way Name: " + v);
             }
@@ -109,6 +116,8 @@ public class GraphBuildingHandler extends DefaultHandler {
                 .equals("name")) {
             /* While looking at a node, we found a <tag...> with k="name". */
             /* TODO Create a location. */
+            node.addName(attributes.getValue("v"));
+
             /* Hint: Since we found this <tag...> INSIDE a node, we should probably remember which
             node this tag belongs to. Remember XML is parsed top-to-bottom, so probably it's the
             last node that you looked at (check the first if-case). */
@@ -129,12 +138,75 @@ public class GraphBuildingHandler extends DefaultHandler {
      */
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if (qName.equals("way")) {
+        if (qName.equals("way") && validWay) {
             /* We are done looking at a way. (We finished looking at the nodes, speeds, etc...)*/
             /* Hint1: If you have stored the possible connections for this way, here's your
             chance to actually connect the nodes together if the way is valid. */
 //            System.out.println("Finishing a way...");
+            Node n1, n2;
+            while(nodesOnTheWay.size() > 1)
+            {
+                n1 = g.getVertex(nodesOnTheWay.pop());
+                n2 = g.getVertex(nodesOnTheWay.peek());
+                n1.addNeighbour(n2.id);
+                n2.addNeighbour(n1.id);
+            }
+            nodesOnTheWay.pop();
         }
     }
+
+    class Node
+    {
+        long id;
+        String name;
+        double lat, lon;
+        PriorityQueue<Neighbour> neighbours;
+        Comparator<Neighbour> comp;
+
+        Node(long id, double lat, double lon)
+        {
+            this.id = id;
+            this.lat = lat;
+            this.lon = lon;
+            this.comp = new DistanceComparator(lat, lon);
+            neighbours = new PriorityQueue<>(1, comp);
+        }
+
+        void addName(String name)
+        { this.name = name;}
+
+        void addNeighbour(long neighbourID)
+        {
+            Node node = g.getVertex(neighbourID);
+            neighbours.add(new Neighbour(neighbourID, this.lon, this.lat, node.lon, node.lat));
+        }
+
+    }
+
+    static class Neighbour
+    {
+        long ID;
+        double distance;
+        public Neighbour(long ID, double thisLon, double thisLat, double neighbourLon, double neighbourLat){
+            this.ID = ID;
+            distance = GraphDB.distance(thisLon, thisLat,neighbourLon, neighbourLat);
+        }
+    }
+
+    public class DistanceComparator implements Comparator<Neighbour>
+    {
+        double lat, lon;
+        public DistanceComparator(double lat, double lon)
+        {
+            this.lat = lat;
+            this.lon = lon;
+        }
+
+        @Override
+        public int compare(Neighbour n1, Neighbour n2) {
+            return n1.distance > n2.distance?-1:1;
+        }
+    }
+
 
 }

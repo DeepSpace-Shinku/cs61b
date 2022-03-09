@@ -6,7 +6,8 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.util.ArrayList;
+import java.security.Key;
+import java.util.*;
 
 /**
  * Graph for storing all of the intersection (vertex) and road (edge) information.
@@ -26,6 +27,9 @@ public class GraphDB {
      * You do not need to modify this constructor, but you're welcome to do so.
      * @param dbPath Path to the XML file to be parsed.
      */
+
+    private final Map<Long, GraphBuildingHandler.Node> vertices = new LinkedHashMap<>();
+
     public GraphDB(String dbPath) {
         try {
             File inputFile = new File(dbPath);
@@ -58,6 +62,9 @@ public class GraphDB {
      */
     private void clean() {
         // TODO: Your code here.
+        for (GraphBuildingHandler.Node node: vertices.values()){
+            if (node.neighbours.isEmpty()) vertices.remove(node.id);
+        }
     }
 
     /**
@@ -66,7 +73,7 @@ public class GraphDB {
      */
     Iterable<Long> vertices() {
         //YOUR CODE HERE, this currently returns only an empty list.
-        return new ArrayList<Long>();
+        return vertices.keySet();
     }
 
     /**
@@ -75,7 +82,11 @@ public class GraphDB {
      * @return An iterable of the ids of the neighbors of v.
      */
     Iterable<Long> adjacent(long v) {
-        return null;
+        List<Long> result = new LinkedList<>();
+        for (GraphBuildingHandler.Neighbour neighbour: vertices.get(v).neighbours){
+            result.add(neighbour.ID);
+        }
+        return result;
     }
 
     /**
@@ -136,7 +147,17 @@ public class GraphDB {
      * @return The id of the node in the graph closest to the target.
      */
     long closest(double lon, double lat) {
-        return 0;
+        double closestDistance = Double.MAX_VALUE;
+        double distance;
+        long closestID = 0;
+        for (GraphBuildingHandler.Node node: vertices.values()){
+            distance = distance(lon, lat, node.lon, node.lat);
+            if (closestDistance > distance){
+                closestID  = node.id;
+                closestDistance = distance;
+            }
+        }
+        return closestID;
     }
 
     /**
@@ -145,7 +166,7 @@ public class GraphDB {
      * @return The longitude of the vertex.
      */
     double lon(long v) {
-        return 0;
+        return vertices.get(v).lon;
     }
 
     /**
@@ -154,6 +175,15 @@ public class GraphDB {
      * @return The latitude of the vertex.
      */
     double lat(long v) {
-        return 0;
+        return vertices.get(v).lat;
+    }
+
+    void addVertex(GraphBuildingHandler.Node node) {
+        this.vertices.put(node.id, node);
+    }
+
+    GraphBuildingHandler.Node getVertex(long vertexID)
+    {
+        return this.vertices.get(vertexID);
     }
 }

@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="42ad9966-b003-4937-9ac6-ea61c3a17fad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GraphDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GraphDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Rasterer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rasterer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GraphBuildingHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphBuildingHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GraphDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Rasterer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Rasterer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +45,27 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.MapServer">
+  <component name="RunManager" selected="JUnit.TestGraphBuildingTiny">
+    <configuration name="CSCourseDB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="example.CSCourseDB" />
+      <module name="proj3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GraphDBLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GraphDBLauncher" />
+      <module name="proj3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MapServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MapServer" />
       <module name="proj3" />
@@ -55,21 +80,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestRasterer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGraphBuildingTiny" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="proj3" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestRasterer" />
+      <option name="MAIN_CLASS_NAME" value="TestGraphBuildingTiny" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -77,9 +104,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestGraphBuildingTiny" />
+        <item itemvalue="Application.GraphDBLauncher" />
+        <item itemvalue="Application.CSCourseDB" />
         <item itemvalue="Application.MapServer" />
         <item itemvalue="Application.Rasterer" />
-        <item itemvalue="JUnit.TestRasterer" />
       </list>
     </recent_temporary>
   </component>
@@ -93,7 +122,11 @@
       <updated>1646214751721</updated>
       <workItem from="1646214753972" duration="12472000" />
       <workItem from="1646285722328" duration="8324000" />
-      <workItem from="1646297503171" duration="3363000" />
+      <workItem from="1646297503171" duration="5895000" />
+      <workItem from="1646449623868" duration="152000" />
+      <workItem from="1646641428287" duration="1714000" />
+      <workItem from="1646707962796" duration="30053000" />
+      <workItem from="1646811200289" duration="14282000" />
     </task>
     <servers />
   </component>
@@ -119,6 +152,29 @@
           <url>file://$PROJECT_DIR$/src/main/java/Rasterer.java</url>
           <line>69</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/TestGraphBuildingTiny.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/example/CSCourseDB.java</url>
+          <line>117</line>
+          <properties class="example.CSCourseDB" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
