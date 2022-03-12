@@ -84,6 +84,7 @@ public class GraphBuildingHandler extends DefaultHandler {
         } else if (qName.equals("way")) {
             /* We encountered a new <way...> tag. */
             activeState = "way";
+            validWay = false;
 //            System.out.println("Beginning a way...");
         } else if (activeState.equals("way") && qName.equals("nd")) {
             /* While looking at a way, we found a <nd...> tag. */
@@ -138,20 +139,23 @@ public class GraphBuildingHandler extends DefaultHandler {
      */
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if (qName.equals("way") && validWay) {
+        if (qName.equals("way")) {
             /* We are done looking at a way. (We finished looking at the nodes, speeds, etc...)*/
             /* Hint1: If you have stored the possible connections for this way, here's your
             chance to actually connect the nodes together if the way is valid. */
 //            System.out.println("Finishing a way...");
-            Node n1, n2;
-            while(nodesOnTheWay.size() > 1)
-            {
-                n1 = g.getVertex(nodesOnTheWay.pop());
-                n2 = g.getVertex(nodesOnTheWay.peek());
-                n1.addNeighbour(n2.id);
-                n2.addNeighbour(n1.id);
+            if (validWay) {
+                Node n1, n2;
+                while (nodesOnTheWay.size() > 1) {
+                    n1 = g.getVertex(nodesOnTheWay.pop());
+                    n2 = g.getVertex(nodesOnTheWay.peek());
+                    n1.addNeighbour(n2.id);
+                    n2.addNeighbour(n1.id);
+                }
+                nodesOnTheWay.pop();
+            }else{
+                while (!nodesOnTheWay.empty()) nodesOnTheWay.pop();
             }
-            nodesOnTheWay.pop();
         }
     }
 

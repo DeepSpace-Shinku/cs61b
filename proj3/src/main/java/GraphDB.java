@@ -62,8 +62,12 @@ public class GraphDB {
      */
     private void clean() {
         // TODO: Your code here.
+        LinkedList<Long> singularIDs = new LinkedList<>();
         for (GraphBuildingHandler.Node node: vertices.values()){
-            if (node.neighbours.isEmpty()) vertices.remove(node.id);
+            if (node.neighbours.isEmpty()) singularIDs.add(node.id);
+        }
+        for (long id: singularIDs){
+            vertices.remove(id);
         }
     }
 

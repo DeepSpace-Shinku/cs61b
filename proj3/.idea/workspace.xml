@@ -8,10 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GraphDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GraphDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rasterer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rasterer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GraphBuildingHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphBuildingHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GraphDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphDB.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Rasterer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Rasterer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,11 +38,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.TestGraphBuildingTiny">
+  <component name="RunManager" selected="JUnit.TestGraphBuilding">
     <configuration name="CSCourseDB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="example.CSCourseDB" />
       <module name="proj3" />
@@ -66,29 +64,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MapServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MapServer" />
-      <module name="proj3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Rasterer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Rasterer" />
-      <module name="proj3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGraphBuilding" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proj3" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestGraphBuilding" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -102,13 +93,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestGraphBuilding.testNodeCountSmall" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proj3" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestGraphBuilding" />
+      <option name="METHOD_NAME" value="testNodeCountSmall" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestGraphBuilding" />
+        <item itemvalue="JUnit.TestGraphBuilding.testNodeCountSmall" />
         <item itemvalue="JUnit.TestGraphBuildingTiny" />
         <item itemvalue="Application.GraphDBLauncher" />
         <item itemvalue="Application.CSCourseDB" />
-        <item itemvalue="Application.MapServer" />
-        <item itemvalue="Application.Rasterer" />
       </list>
     </recent_temporary>
   </component>
@@ -126,7 +127,8 @@
       <workItem from="1646449623868" duration="152000" />
       <workItem from="1646641428287" duration="1714000" />
       <workItem from="1646707962796" duration="30053000" />
-      <workItem from="1646811200289" duration="14282000" />
+      <workItem from="1646811200289" duration="20385000" />
+      <workItem from="1647060138717" duration="5920000" />
     </task>
     <servers />
   </component>
@@ -159,14 +161,9 @@
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java</url>
-          <line>140</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/src/main/java/GraphDB.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/example/CSCourseDB.java</url>
@@ -176,6 +173,10 @@
           </properties>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.ConcurrentModificationException" package="java.util" />
+          <option name="timeStamp" value="16" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
