@@ -55,7 +55,7 @@ public class Router {
 
              marked.add(v);
              double distV, distW;
-             for(long w: g.getVertex(v).neighbours){
+             for(long w: g.getVertex(v).neighbours.keySet()){
                  distV = getBest(best, v);
                  distW = getBest(best, w);
                  if (g.distance(v, w) < distW - distV){
@@ -79,8 +79,7 @@ public class Router {
 
     private static double getBest(HashMap<Long, Double> best, long v)
     {
-        if (best.containsKey(v)) return best.get(v);
-        else return Double.MAX_VALUE;
+        return best.getOrDefault(v, Double.MAX_VALUE);
     }
 
 
@@ -94,10 +93,67 @@ public class Router {
      */
     public static List<NavigationDirection> routeDirections(GraphDB g, List<Long> route) {
        List<NavigationDirection> result = new LinkedList<>();
-       for (long node: route){
+       NavigationDirection current=null;
+       String prevWay=null;
 
+       String way;
+       double dist;
+
+       for (int i = 0; i < route.size() - 1; i += 1){
+           long startID = route.get(i), endID = route.get(i + 1);
+           GraphBuildingHandler.Node start = g.getVertex(startID);
+           way = start.neighbours.get(endID);
+           dist = g.distance(startID, endID);
+
+           if (i == 0) {
+               current = new NavigationDirection();
+               current.direction = NavigationDirection.START;
+               current.distance = dist;
+               current.way = way;
+           } else {
+               if (way.equals(prevWay)){
+                   current.distance += dist;
+               }else{
+                   long prevID = route.get(i - 1);
+                   result.add(current);
+                   current = new NavigationDirection();
+                   current.way = way;
+                   current.distance = dist;
+
+                   current.direction = chooseDirection(g.bearing(startID, endID) - g.bearing(prevID, startID));
+               }
+           }
+           if (i == route.size() - 2){
+               result.add(current);
+           }
+           prevWay = way;
        }
        return result;
+    }
+
+    private static int chooseDirection(double bearing)
+    {
+        if (bearing > 180) bearing -= 360;
+        if (bearing < -180) bearing += 360;
+        int result;
+        if (bearing < 0){
+            if (bearing < -30){
+                if (bearing < -100) result = NavigationDirection.SHARP_LEFT;
+                else result = NavigationDirection.LEFT;
+            }else{
+                if (bearing < -15) result = NavigationDirection.SLIGHT_LEFT;
+                else result = NavigationDirection.STRAIGHT;
+            }
+        }else{
+            if (bearing > 30){
+                if (bearing > 100) result = NavigationDirection.SHARP_RIGHT;
+                else result = NavigationDirection.RIGHT;
+            }else{
+                if (bearing > 15) result = NavigationDirection.SLIGHT_RIGHT;
+                else result = NavigationDirection.STRAIGHT;
+            }
+        }
+        return result;
     }
 
 

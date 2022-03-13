@@ -38,6 +38,7 @@ public class GraphBuildingHandler extends DefaultHandler {
     private final GraphDB g;
     Stack<Long> nodesOnTheWay = new Stack<>();
     boolean validWay;
+    String wayName;
     Node node =  null;
 
     /**
@@ -111,6 +112,7 @@ public class GraphBuildingHandler extends DefaultHandler {
                 validWay = ALLOWED_HIGHWAY_TYPES.contains(v);
             } else if (k.equals("name")) {
                 //System.out.println("Way Name: " + v);
+                wayName = v;
             }
 //            System.out.println("Tag with k=" + k + ", v=" + v + ".");
         } else if (activeState.equals("node") && qName.equals("tag") && attributes.getValue("k")
@@ -145,17 +147,19 @@ public class GraphBuildingHandler extends DefaultHandler {
             chance to actually connect the nodes together if the way is valid. */
 //            System.out.println("Finishing a way...");
             if (validWay) {
+                String way;
                 Node n1, n2;
                 while (nodesOnTheWay.size() > 1) {
                     n1 = g.getVertex(nodesOnTheWay.pop());
                     n2 = g.getVertex(nodesOnTheWay.peek());
-                    n1.addNeighbour(n2.id);
-                    n2.addNeighbour(n1.id);
+                    n1.addNeighbour(n2.id, wayName);
+                    n2.addNeighbour(n1.id, wayName);
                 }
                 nodesOnTheWay.pop();
             }else{
                 while (!nodesOnTheWay.empty()) nodesOnTheWay.pop();
             }
+            wayName = "";
         }
     }
 
@@ -164,24 +168,39 @@ public class GraphBuildingHandler extends DefaultHandler {
         long id;
         String name;
         double lat, lon;
-        List<Long> neighbours;
+
+        // A Map of neighbours of a node
+        // K is the Node id, V is the road name.
+        HashMap<Long, String> neighbours;
 
         Node(long id, double lat, double lon)
         {
             this.id = id;
             this.lat = lat;
             this.lon = lon;
-            neighbours = new LinkedList<>();
+            neighbours = new HashMap<>();
         }
 
         void addName(String name)
         { this.name = name;}
 
-        void addNeighbour(long neighbourID)
+        void addNeighbour(long neighbourID, String way)
         {
-            neighbours.add(neighbourID);
+            neighbours.put(neighbourID, way);
         }
 
+    }
+
+    private static class Neighbour
+    {
+        public long id;
+        public String way;
+
+        private Neighbour(long id, String way)
+        {
+            this.id = id;
+            this.way = way;
+        }
     }
 
 

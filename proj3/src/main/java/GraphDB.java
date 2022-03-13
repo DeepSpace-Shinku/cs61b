@@ -86,7 +86,7 @@ public class GraphDB {
      * @return An iterable of the ids of the neighbors of v.
      */
     Iterable<Long> adjacent(long v) {
-        return vertices.get(v).neighbours;
+        return vertices.get(v).neighbours.keySet();
     }
 
     /**

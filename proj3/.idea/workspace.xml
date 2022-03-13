@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42ad9966-b003-4937-9ac6-ea61c3a17fad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TestSelf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GraphDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GraphDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Router.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Router.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GraphBuildingHandler$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphBuildingHandler$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GraphBuildingHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphBuildingHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GraphDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Router$Bead.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Router$Bead.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Router$NavigationDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Router$NavigationDirection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Router.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Router.class" afterDir="false" />
     </list>
@@ -14,6 +22,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -35,6 +50,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -43,7 +59,18 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.TestRouter">
+  <component name="RunManager" selected="JUnit.TestDirections.testRouteDirections">
+    <configuration name="TestSelf.test" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proj3" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestSelf" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MapServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MapServer" />
       <module name="proj3" />
@@ -64,49 +91,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestGraphBuilding" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDirections.testRouteDirections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="proj3" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGraphBuilding" />
+      <option name="MAIN_CLASS_NAME" value="TestDirections" />
+      <option name="METHOD_NAME" value="testRouteDirections" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestSelf" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proj3" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestSelf" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestRasterer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestSelf.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="proj3" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestRasterer" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestRouter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="proj3" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestRouter" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestRouterTiny" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="proj3" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestRouterTiny" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="TestSelf" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestRouter" />
-        <item itemvalue="JUnit.TestRasterer" />
+        <item itemvalue="JUnit.TestDirections.testRouteDirections" />
         <item itemvalue="Application.MapServer" />
-        <item itemvalue="JUnit.TestRouterTiny" />
-        <item itemvalue="JUnit.TestGraphBuilding" />
+        <item itemvalue="Android JUnit.TestSelf.test" />
+        <item itemvalue="JUnit.TestSelf.test" />
+        <item itemvalue="JUnit.TestSelf" />
       </list>
     </recent_temporary>
   </component>
@@ -126,7 +146,9 @@
       <workItem from="1646707962796" duration="30053000" />
       <workItem from="1646811200289" duration="20385000" />
       <workItem from="1647060138717" duration="10412000" />
-      <workItem from="1647083770004" duration="15130000" />
+      <workItem from="1647083770004" duration="17868000" />
+      <workItem from="1647154782898" duration="4094000" />
+      <workItem from="1647159153680" duration="8007000" />
     </task>
     <servers />
   </component>
@@ -164,6 +186,11 @@
           <line>54</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/TestSelf.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/example/CSCourseDB.java</url>
           <line>117</line>
@@ -178,5 +205,10 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="route.get(0).value" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
