@@ -93,40 +93,28 @@ public class Router {
      */
     public static List<NavigationDirection> routeDirections(GraphDB g, List<Long> route) {
        List<NavigationDirection> result = new LinkedList<>();
-       NavigationDirection current=null;
-       String prevWay=null;
+       NavigationDirection current = null;
+       String prevWay = null;
 
-       String way;
+       String wayName;
        double dist;
-
        for (int i = 0; i < route.size() - 1; i += 1){
            long startID = route.get(i), endID = route.get(i + 1);
-           GraphBuildingHandler.Node start = g.getVertex(startID);
-           way = start.neighbours.get(endID);
+           wayName = g.getVertex(startID).neighbours.get(endID);
            dist = g.distance(startID, endID);
 
-           if (i == 0) {
+           if (wayName.equals(prevWay)) current.distance += dist;
+           else {
+               if (i != 0) result.add(current);
                current = new NavigationDirection();
-               current.direction = NavigationDirection.START;
+               current.direction = (i == 0)?NavigationDirection.START:
+                       chooseDirection(g.bearing(startID, endID) - g.bearing(route.get(i - 1), startID));
+               current.way = wayName;
                current.distance = dist;
-               current.way = way;
-           } else {
-               if (way.equals(prevWay)){
-                   current.distance += dist;
-               }else{
-                   long prevID = route.get(i - 1);
-                   result.add(current);
-                   current = new NavigationDirection();
-                   current.way = way;
-                   current.distance = dist;
-
-                   current.direction = chooseDirection(g.bearing(startID, endID) - g.bearing(prevID, startID));
-               }
            }
-           if (i == route.size() - 2){
-               result.add(current);
-           }
-           prevWay = way;
+           
+           if (i == route.size() - 2) result.add(current);
+           prevWay = wayName;
        }
        return result;
     }
