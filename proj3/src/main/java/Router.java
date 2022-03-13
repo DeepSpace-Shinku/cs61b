@@ -33,37 +33,39 @@ public class Router {
 
     private static List<Long> aStarShortestPath(GraphDB g, long start, long dest)
     {
-
+        // Initialize best, the known best distance from a node to start
         HashMap<Long, Double> best = new HashMap<>();
         best.put(start, .0);
+
+        // A set contains checked nodes, to prevent repeating
         Set<Long> marked = new HashSet<>();
+
+        // Contains node that waiting to check
         PriorityQueue<Bead> fringe = new PriorityQueue<>();
         fringe.add(new Bead(start, 0, null));
-        long v;
+
+        // Start search
+
         Bead last;
         while(true){
-             Bead b = fringe.remove();
-             v = b.ID;
+             last = fringe.remove();
+             long v = last.ID;
              if (marked.contains(v)) continue;
-             if (v == dest) {
-                 last = b;
-                 break;
-             }
+             if (v == dest) break;
 
              marked.add(v);
              double distV, distW;
              for(long w: g.getVertex(v).neighbours){
-                 if (best.containsKey(v)) distV = best.get(v);
-                 else distV = Double.MAX_VALUE;
-                 if (best.containsKey(w)) distW = best.get(w);
-                 else distW = Double.MAX_VALUE;
+                 distV = getBest(best, v);
+                 distW = getBest(best, w);
                  if (g.distance(v, w) < distW - distV){
                      best.put(w, distV + g.distance(v, w));
-                     fringe.add(new Bead(w, distV + g.distance(v, w) + g.distance(w, dest), b));
+                     fringe.add(new Bead(w, distV + g.distance(v, w) + g.distance(w, dest), last));
                  }
              }
         }
 
+        // Store the result to a list
         List<Long> result  = new LinkedList<>();
         Bead b = last;
         while(b != null){
@@ -72,6 +74,13 @@ public class Router {
         }
 
         return result;
+    }
+
+
+    private static double getBest(HashMap<Long, Double> best, long v)
+    {
+        if (best.containsKey(v)) return best.get(v);
+        else return Double.MAX_VALUE;
     }
 
 
@@ -84,7 +93,11 @@ public class Router {
      * route.
      */
     public static List<NavigationDirection> routeDirections(GraphDB g, List<Long> route) {
-        return null; // FIXME
+       List<NavigationDirection> result = new LinkedList<>();
+       for (long node: route){
+
+       }
+       return result;
     }
 
 

@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="42ad9966-b003-4937-9ac6-ea61c3a17fad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GraphBuildingHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GraphDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GraphDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Router.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Router.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GraphBuildingHandler$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphBuildingHandler$Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GraphDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphDB.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Router$NavigationDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Router$NavigationDirection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Router.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Router.class" afterDir="false" />
     </list>
@@ -47,7 +43,14 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.TestRouterTiny">
+  <component name="RunManager" selected="JUnit.TestRouter">
+    <configuration name="MapServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MapServer" />
+      <module name="proj3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -70,21 +73,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestGraphBuildingTiny" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestRasterer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="proj3" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGraphBuildingTiny" />
+      <option name="MAIN_CLASS_NAME" value="TestRasterer" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestGraphBuilding.testNodeCountSmall" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="proj3" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGraphBuilding" />
-      <option name="METHOD_NAME" value="testNodeCountSmall" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -109,11 +102,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestRouterTiny" />
         <item itemvalue="JUnit.TestRouter" />
+        <item itemvalue="JUnit.TestRasterer" />
+        <item itemvalue="Application.MapServer" />
+        <item itemvalue="JUnit.TestRouterTiny" />
         <item itemvalue="JUnit.TestGraphBuilding" />
-        <item itemvalue="JUnit.TestGraphBuilding.testNodeCountSmall" />
-        <item itemvalue="JUnit.TestGraphBuildingTiny" />
       </list>
     </recent_temporary>
   </component>
@@ -133,7 +126,7 @@
       <workItem from="1646707962796" duration="30053000" />
       <workItem from="1646811200289" duration="20385000" />
       <workItem from="1647060138717" duration="10412000" />
-      <workItem from="1647083770004" duration="13031000" />
+      <workItem from="1647083770004" duration="15130000" />
     </task>
     <servers />
   </component>
