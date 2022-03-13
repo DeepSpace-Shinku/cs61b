@@ -1,5 +1,4 @@
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,8 +24,56 @@ public class Router {
      */
     public static List<Long> shortestPath(GraphDB g, double stlon, double stlat,
                                           double destlon, double destlat) {
-        return null; // FIXME
+
+
+        long start = g.closest(stlon, stlat);
+        long dest = g.closest(destlon, destlat);
+        return aStarShortestPath(g, start, dest);
     }
+
+    private static List<Long> aStarShortestPath(GraphDB g, long start, long dest)
+    {
+
+        HashMap<Long, Double> best = new HashMap<>();
+        best.put(start, .0);
+        Set<Long> marked = new HashSet<>();
+        PriorityQueue<Bead> fringe = new PriorityQueue<>();
+        fringe.add(new Bead(start, 0, null));
+        long v;
+        Bead last;
+        while(true){
+             Bead b = fringe.remove();
+             v = b.ID;
+             if (marked.contains(v)) continue;
+             if (v == dest) {
+                 last = b;
+                 break;
+             }
+
+             marked.add(v);
+             double distV, distW;
+             for(long w: g.getVertex(v).neighbours){
+                 if (best.containsKey(v)) distV = best.get(v);
+                 else distV = Double.MAX_VALUE;
+                 if (best.containsKey(w)) distW = best.get(w);
+                 else distW = Double.MAX_VALUE;
+                 if (g.distance(v, w) < distW - distV){
+                     best.put(w, distV + g.distance(v, w));
+                     fringe.add(new Bead(w, distV + g.distance(v, w) + g.distance(w, dest), b));
+                 }
+             }
+        }
+
+        List<Long> result  = new LinkedList<>();
+        Bead b = last;
+        while(b != null){
+            result.add(0, b.ID);
+            b = b.prev;
+        }
+
+        return result;
+    }
+
 
     /**
      * Create the list of directions corresponding to a route on the graph.
@@ -159,5 +206,26 @@ public class Router {
         public int hashCode() {
             return Objects.hash(direction, way, distance);
         }
+
     }
+
+    private static class Bead implements Comparable<Bead>
+    {
+        private long ID;
+        private double priority;
+        Bead prev;
+
+        public Bead(long ID, double priority, Bead prev)
+        {
+            this.ID = ID;
+            this.priority = priority;
+            this.prev = prev;
+        }
+
+        @Override
+        public int compareTo(Bead o) {
+            return (this.priority > o.priority)?1:-1;
+        }
+    }
+
 }

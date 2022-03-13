@@ -86,11 +86,7 @@ public class GraphDB {
      * @return An iterable of the ids of the neighbors of v.
      */
     Iterable<Long> adjacent(long v) {
-        List<Long> result = new LinkedList<>();
-        for (GraphBuildingHandler.Neighbour neighbour: vertices.get(v).neighbours){
-            result.add(neighbour.ID);
-        }
-        return result;
+        return vertices.get(v).neighbours;
     }
 
     /**

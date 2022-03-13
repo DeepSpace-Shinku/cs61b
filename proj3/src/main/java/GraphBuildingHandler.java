@@ -164,16 +164,14 @@ public class GraphBuildingHandler extends DefaultHandler {
         long id;
         String name;
         double lat, lon;
-        PriorityQueue<Neighbour> neighbours;
-        Comparator<Neighbour> comp;
+        List<Long> neighbours;
 
         Node(long id, double lat, double lon)
         {
             this.id = id;
             this.lat = lat;
             this.lon = lon;
-            this.comp = new DistanceComparator(lat, lon);
-            neighbours = new PriorityQueue<>(1, comp);
+            neighbours = new LinkedList<>();
         }
 
         void addName(String name)
@@ -181,36 +179,11 @@ public class GraphBuildingHandler extends DefaultHandler {
 
         void addNeighbour(long neighbourID)
         {
-            Node node = g.getVertex(neighbourID);
-            neighbours.add(new Neighbour(neighbourID, this.lon, this.lat, node.lon, node.lat));
+            neighbours.add(neighbourID);
         }
 
     }
 
-    static class Neighbour
-    {
-        long ID;
-        double distance;
-        public Neighbour(long ID, double thisLon, double thisLat, double neighbourLon, double neighbourLat){
-            this.ID = ID;
-            distance = GraphDB.distance(thisLon, thisLat,neighbourLon, neighbourLat);
-        }
-    }
-
-    public class DistanceComparator implements Comparator<Neighbour>
-    {
-        double lat, lon;
-        public DistanceComparator(double lat, double lon)
-        {
-            this.lat = lat;
-            this.lon = lon;
-        }
-
-        @Override
-        public int compare(Neighbour n1, Neighbour n2) {
-            return n1.distance > n2.distance?-1:1;
-        }
-    }
 
 
 }
