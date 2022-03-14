@@ -109,10 +109,10 @@ public class Router {
                current = new NavigationDirection();
                current.direction = (i == 0)?NavigationDirection.START:
                        chooseDirection(g.bearing(startID, endID) - g.bearing(route.get(i - 1), startID));
-               current.way = wayName;
+               if(!wayName.equals("")) current.way = wayName;
                current.distance = dist;
            }
-           
+
            if (i == route.size() - 2) result.add(current);
            prevWay = wayName;
        }

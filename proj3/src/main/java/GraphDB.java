@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.security.Key;
 import java.util.*;
 
 /**
@@ -29,6 +28,7 @@ public class GraphDB {
      */
 
     private final Map<Long, GraphBuildingHandler.Node> vertices = new LinkedHashMap<>();
+    public TrieSet prefixSearchSet;
 
     public GraphDB(String dbPath) {
         try {
@@ -43,7 +43,9 @@ public class GraphDB {
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
+        prefixSearchSet = buildTrieSet();
         clean();
+
     }
 
     /**
@@ -185,5 +187,114 @@ public class GraphDB {
     GraphBuildingHandler.Node getVertex(long vertexID)
     {
         return this.vertices.get(vertexID);
+    }
+
+
+    static class TrieSet
+    {
+        private Node root;
+        private long size;
+
+        public void put(HashMap<String, Object> location)
+        {
+            String original = (String)location.get("name");
+            String cleaned = cleanString(original);
+            Node node = root;
+            for (int i = 0; i < cleaned.length(); i += 1){
+                char c = cleaned.charAt(i);
+                if (!node.links.containsKey(c)) node.links.put(c, new Node(c));
+                node = node.links.get(c);
+            }
+            node.isExists = true;
+            node.location = location;
+            this.size += 1;
+
+        }
+
+        private Node findNode(String cleanedPrefix)
+        {
+            Node node = root;
+            for (int i = 0; i < cleanedPrefix.length(); i += 1){
+                if (node == null) break;
+                char c = cleanedPrefix.charAt(i);
+                node = node.links.get(c);
+            }
+            return node;
+        }
+
+        List<String> getAllOriginalNames(String cleanedPrefix)
+        {
+
+            Node node = findNode(cleanedPrefix);
+            List<String> result = new LinkedList<>();
+            getAllOriginalNames(node, result);
+            return result;
+        }
+
+        private void getAllOriginalNames(Node node, List<String> result)
+        {
+            if (node == null) return;
+            if (node.isExists) result.add((String) node.location.get("name"));
+            for (Node link: node.links.values()) getAllOriginalNames(link, result);
+        }
+
+
+
+        List<Map<String, Object>> getAllLocations(String cleanedPrefix)
+        {
+            Node node = findNode(cleanedPrefix);
+            List<Map<String, Object>> result = new LinkedList<>();
+            getAllLocations(node, result);
+            return result;
+        }
+
+        private void getAllLocations(Node node, List<Map<String, Object>> result)
+        {
+            if (node == null) return;
+            if (node.isExists) result.add(node.location);
+            for (Node link: node.links.values()) getAllLocations(link, result);
+        }
+
+        TrieSet(Iterable<GraphBuildingHandler.Node> vertices)
+        {
+            this.root = new Node(' ');
+            this.size = 0;
+
+            HashMap<String, Object> location;
+            for (GraphBuildingHandler.Node node: vertices){
+                if(node.name != null) {
+                    location = new HashMap<>();
+                    location.put("lat", node.lat);
+                    location.put("lon", node.lon);
+                    location.put("name", node.name);
+                    location.put("id", node.id);
+                    this.put(location);
+                }
+
+            }
+        }
+
+        public TrieSet()
+        {
+            this.root = new Node(' ');
+        }
+
+        private static class Node {
+            boolean isExists;
+            char c;
+            Map<Character, Node> links;
+            Map<String, Object> location;
+
+            private Node(char c) {
+                links = new TreeMap<>();
+                isExists = false;
+                this.c = c;
+            }
+        }
+    }
+
+    private TrieSet buildTrieSet()
+    {
+        return new TrieSet(vertices.values());
     }
 }

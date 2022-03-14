@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="42ad9966-b003-4937-9ac6-ea61c3a17fad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GraphDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GraphDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MapServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MapServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Router.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Router.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TestSelf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestSelf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GraphDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GraphDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MapServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MapServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Router.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Router.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/TestSelf.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TestSelf.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +56,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.TestDirections.testRouteDirections">
+  <component name="RunManager" selected="Application.MapServer">
     <configuration name="TestSelf.test" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="proj3" />
       <option name="PACKAGE_NAME" value="" />
@@ -68,15 +75,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,10 +117,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestDirections.testRouteDirections" />
         <item itemvalue="Application.MapServer" />
-        <item itemvalue="Android JUnit.TestSelf.test" />
         <item itemvalue="JUnit.TestSelf.test" />
+        <item itemvalue="Android JUnit.TestSelf.test" />
+        <item itemvalue="JUnit.TestDirections.testRouteDirections" />
         <item itemvalue="JUnit.TestSelf" />
       </list>
     </recent_temporary>
@@ -138,7 +143,8 @@
       <workItem from="1647060138717" duration="10412000" />
       <workItem from="1647083770004" duration="17868000" />
       <workItem from="1647154782898" duration="4094000" />
-      <workItem from="1647159153680" duration="9086000" />
+      <workItem from="1647159153680" duration="15241000" />
+      <workItem from="1647176333730" duration="15803000" />
     </task>
     <servers />
   </component>
@@ -167,19 +173,20 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Rasterer.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/TestGraphBuildingTiny.java</url>
           <line>54</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/TestSelf.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="23" />
+          <line>16</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="node.id == 282600628" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/main/java/GraphDB.java</url>
+          <line>264</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/example/CSCourseDB.java</url>
@@ -198,6 +205,7 @@
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="route.get(0).value" />
+        <watch expression="s.root" />
       </configuration>
     </watches-manager>
   </component>
