@@ -45,13 +45,16 @@ public class Router {
         fringe.add(new Bead(start, 0, null));
 
         // Start search
-
-        Bead last;
-        while(true){
+        boolean isFailed = true;
+        Bead last = null;
+        while(!fringe.isEmpty()){
              last = fringe.remove();
              long v = last.ID;
              if (marked.contains(v)) continue;
-             if (v == dest) break;
+             if (v == dest) {
+                 isFailed = false;
+                 break;
+             }
 
              marked.add(v);
              double distV, distW;
@@ -67,6 +70,7 @@ public class Router {
 
         // Store the result to a list
         List<Long> result  = new LinkedList<>();
+        if (isFailed)  return result;
         Bead b = last;
         while(b != null){
             result.add(0, b.ID);
@@ -103,15 +107,14 @@ public class Router {
            wayName = g.getVertex(startID).neighbours.get(endID);
            dist = g.distance(startID, endID);
 
-           if (wayName.equals(prevWay)) current.distance += dist;
-           else {
+           if (!wayName.equals(prevWay)) {
                if (i != 0) result.add(current);
                current = new NavigationDirection();
                current.direction = (i == 0)?NavigationDirection.START:
                        chooseDirection(g.bearing(startID, endID) - g.bearing(route.get(i - 1), startID));
                if(!wayName.equals("")) current.way = wayName;
-               current.distance = dist;
            }
+           current.distance += dist;
 
            if (i == route.size() - 2) result.add(current);
            prevWay = wayName;

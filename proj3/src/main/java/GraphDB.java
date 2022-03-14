@@ -206,7 +206,8 @@ public class GraphDB {
                 node = node.links.get(c);
             }
             node.isExists = true;
-            node.location = location;
+            if (node.locations == null) node.locations = new LinkedList<>();
+            node.locations.add(location);
             this.size += 1;
 
         }
@@ -234,14 +235,16 @@ public class GraphDB {
         private void getAllOriginalNames(Node node, List<String> result)
         {
             if (node == null) return;
-            if (node.isExists) result.add((String) node.location.get("name"));
+            if (node.isExists)
+                for (Map<String, Object> location: node.locations) result.add((String) location.get("name"));
             for (Node link: node.links.values()) getAllOriginalNames(link, result);
         }
 
 
 
-        List<Map<String, Object>> getAllLocations(String cleanedPrefix)
+        List<Map<String, Object>> getAllLocations(String prefix)
         {
+            String cleanedPrefix = cleanString(prefix);
             Node node = findNode(cleanedPrefix);
             List<Map<String, Object>> result = new LinkedList<>();
             getAllLocations(node, result);
@@ -251,7 +254,7 @@ public class GraphDB {
         private void getAllLocations(Node node, List<Map<String, Object>> result)
         {
             if (node == null) return;
-            if (node.isExists) result.add(node.location);
+            if (node.isExists) result.addAll(node.locations);
             for (Node link: node.links.values()) getAllLocations(link, result);
         }
 
@@ -283,7 +286,7 @@ public class GraphDB {
             boolean isExists;
             char c;
             Map<Character, Node> links;
-            Map<String, Object> location;
+            List<Map<String, Object>> locations;
 
             private Node(char c) {
                 links = new TreeMap<>();
