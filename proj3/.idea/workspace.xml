@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="42ad9966-b003-4937-9ac6-ea61c3a17fad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TestSelf.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,17 +52,6 @@
     <configuration name="MapServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MapServer" />
       <module name="proj3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -134,7 +122,8 @@
       <workItem from="1647083770004" duration="17868000" />
       <workItem from="1647154782898" duration="4094000" />
       <workItem from="1647159153680" duration="15241000" />
-      <workItem from="1647176333730" duration="21841000" />
+      <workItem from="1647176333730" duration="21853000" />
+      <workItem from="1647306451734" duration="2249000" />
     </task>
     <servers />
   </component>
